@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
@@ -8,14 +8,27 @@ const ContactUs = () => {
     name: "",
     email: "",
     mobile: "",
-    location: "",
+    address: "",
     message: "",
+    lat: "",
+    lon: "",
+    formattedAddress: "",
   });
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [toast, setToast] = useState({ show: false, type: "", message: "" });
   const [touched, setTouched] = useState({});
+
+  // ✅ Address lookup UI state
+  const [addrQuery, setAddrQuery] = useState("");
+  const [addrSuggestions, setAddrSuggestions] = useState([]);
+  const [addrLoading, setAddrLoading] = useState(false);
+  const [addrOpen, setAddrOpen] = useState(false);
+
+  const abortRef = useRef(null);
+  const debounceRef = useRef(null);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     AOS.init({
@@ -26,12 +39,25 @@ const ContactUs = () => {
     });
   }, []);
 
-  const patterns = {
-    email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    mobile: /^[0-9]{10}$/,
-    name: /^[a-zA-Z\s]{2,50}$/,
-    location: /^[a-zA-Z0-9\s,.-]{5,100}$/,
-  };
+  // Close suggestions on outside click
+  useEffect(() => {
+    const onDocClick = (e) => {
+      if (!dropdownRef.current) return;
+      if (!dropdownRef.current.contains(e.target)) setAddrOpen(false);
+    };
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, []);
+
+  const patterns = useMemo(
+    () => ({
+      email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      mobile: /^[0-9]{10}$/,
+      name: /^[a-zA-Z\s]{2,50}$/,
+      address: /^[a-zA-Z0-9\s,.-]{5,200}$/,
+    }),
+    []
+  );
 
   const validateField = (name, value) => {
     let error = "";
@@ -45,25 +71,22 @@ const ContactUs = () => {
 
       case "email":
         if (!value.trim()) error = "Email is required";
-        else if (!patterns.email.test(value.trim()))
-          error = "Invalid email";
+        else if (!patterns.email.test(value.trim())) error = "Invalid email";
         break;
 
       case "mobile":
         if (!value.trim()) error = "Mobile is required";
-        else if (!patterns.mobile.test(value.trim()))
-          error = "10 digits required";
+        else if (!patterns.mobile.test(value.trim())) error = "10 digits required";
         break;
 
-      case "location":
-        if (!value.trim()) error = "Location is required";
-        else if (!patterns.location.test(value.trim()))
-          error = "Location must be 5-100 characters";
+      case "address":
+        if (!value.trim()) error = "Address is required";
+        else if (!patterns.address.test(value.trim()))
+          error = "Address must be 5-200 characters";
         break;
 
       case "message":
-        if (value.trim().length > 500)
-          error = "Max 500 characters allowed";
+        if (value.trim().length > 500) error = "Max 500 characters allowed";
         break;
 
       default:
@@ -73,8 +96,81 @@ const ContactUs = () => {
     return error;
   };
 
+  const showToast = (type, message) => {
+    setToast({ show: true, type, message });
+    setTimeout(() => setToast({ show: false, type: "", message: "" }), 4000);
+  };
+
+  // ✅ Nominatim Address Search (no API key)
+  const searchAddress = async (q) => {
+    const query = String(q || "").trim();
+    if (query.length < 3) {
+      setAddrSuggestions([]);
+      return;
+    }
+
+    // cancel previous
+    if (abortRef.current) abortRef.current.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+
+    setAddrLoading(true);
+
+    try {
+      const url =
+        "https://nominatim.openstreetmap.org/search?" +
+        new URLSearchParams({
+          q: query,
+          format: "json",
+          addressdetails: "1",
+          limit: "6",
+        }).toString();
+
+      const res = await fetch(url, {
+        method: "GET",
+        signal: controller.signal,
+        headers: {
+          // OSM suggests identifying your app; keep it simple
+          "Accept-Language": "en",
+        },
+      });
+
+      const data = await res.json();
+      setAddrSuggestions(Array.isArray(data) ? data : []);
+      setAddrOpen(true);
+    } catch (e) {
+      // ignore abort errors
+      if (e?.name !== "AbortError") setAddrSuggestions([]);
+    } finally {
+      setAddrLoading(false);
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // ✅ Special handling for address typing: update addrQuery + form.address
+    if (name === "address") {
+      setAddrQuery(value);
+      setForm((prev) => ({
+        ...prev,
+        address: value,
+        // reset geo until user selects a suggestion
+        lat: "",
+        lon: "",
+        formattedAddress: "",
+      }));
+
+      if (touched.address) {
+        setErrors((prev) => ({ ...prev, address: validateField("address", value) }));
+      }
+
+      // debounce search
+      clearTimeout(debounceRef.current);
+      debounceRef.current = setTimeout(() => searchAddress(value), 400);
+      return;
+    }
+
     setForm((prev) => ({ ...prev, [name]: value }));
 
     if (touched[name]) {
@@ -92,87 +188,128 @@ const ContactUs = () => {
       ...prev,
       [name]: validateField(name, value),
     }));
+
+    // ✅ Keep dropdown open a bit to allow click selection
+    if (name === "address") {
+      setTimeout(() => setAddrOpen(true), 0);
+    }
   };
 
   const validateForm = () => {
     const newErrors = {};
-    ["name", "email", "mobile", "location"].forEach((field) => {
+    ["name", "email", "mobile", "address"].forEach((field) => {
       const error = validateField(field, form[field]);
       if (error) newErrors[field] = error;
     });
     return newErrors;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // ✅ When user selects a suggestion
+  const selectSuggestion = (item) => {
+    const formatted = item?.display_name || "";
+    const lat = item?.lat ? String(item.lat) : "";
+    const lon = item?.lon ? String(item.lon) : "";
 
-    setTouched({
-      name: true,
-      email: true,
-      mobile: true,
-      location: true,
-      message: true,
-    });
+    setForm((prev) => ({
+      ...prev,
+      address: formatted, // fill in field with correct formatted address
+      formattedAddress: formatted,
+      lat,
+      lon,
+    }));
 
-    const newErrors = validateForm();
+    setAddrQuery(formatted);
+    setAddrOpen(false);
+    setAddrSuggestions([]);
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      setToast({
-        show: true,
-        type: "error",
-        message: "Please fix the errors",
-      });
-      setTimeout(() => setToast({ show: false, type: "", message: "" }), 4000);
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbwTGN-QWyr2BPbV9NGUCWSTpcv9SO_PqQsiNxz-KSOQqoyhm3ZTVyYALMWg3fZYLWSX/exec",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            project: "CROWD_FUNDING",
-            name: form.name,
-            email: form.email,
-            mobile: form.mobile,
-            location: form.location,
-            message: form.message,
-          }),
-        }
-      );
-
-      const result = await response.json();
-
-      if (!result.ok) throw new Error("Submission failed");
-
-      setToast({
-        show: true,
-        type: "success",
-        message: "we received your message! We'll get back to you soon.",
-      });
-
-      setForm({ name: "", email: "", mobile: "", location: "", message: "" });
-      setErrors({});
-      setTouched({});
-    } catch (err) {
-      setToast({
-        show: true,
-        type: "error",
-        message: "Failed to send. Try again.",
-      });
-    } finally {
-      setIsLoading(false);
-      setTimeout(() => setToast({ show: false, type: "", message: "" }), 4000);
-    }
+    // validate immediately if already touched
+    setErrors((prev) => ({ ...prev, address: validateField("address", formatted) }));
+    setTouched((prev) => ({ ...prev, address: true }));
   };
 
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  setTouched({
+    name: true,
+    email: true,
+    mobile: true,
+    address: true,
+    message: true,
+  });
+
+  const newErrors = validateForm();
+
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors);
+    showToast("error", "Please fix the errors");
+    return;
+  }
+
+  setIsLoading(true);
+
+  try {
+    const payload = {
+      project: "CROWD_FUNDING",
+      name: form.name,
+      email: form.email,
+      mobile: form.mobile,
+      address: form.address,
+      formattedAddress: form.formattedAddress || form.address,
+      lat: form.lat,
+      lon: form.lon,
+      message: form.message,
+    };
+
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbwTGN-QWyr2BPbV9NGUCWSTpcv9SO_PqQsiNxz-KSOQqoyhm3ZTVyYALMWg3fZYLWSX/exec",
+      {
+        method: "POST",
+        // ✅ Apps Script friendly content-type
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    // ✅ Always read text first (works even if server returns HTML)
+    const text = await response.text();
+
+    let result;
+    try {
+      result = JSON.parse(text);
+    } catch {
+      console.log("Non-JSON response from Apps Script:", text);
+      throw new Error("Server didn't return JSON. Check Apps Script deploy access.");
+    }
+
+    if (!response.ok || !result?.ok) {
+      throw new Error(result?.error || "Submission failed");
+    }
+
+    showToast("success", "We received your message! We'll get back to you soon.");
+
+    setForm({
+      name: "",
+      email: "",
+      mobile: "",
+      address: "",
+      message: "",
+      lat: "",
+      lon: "",
+      formattedAddress: "",
+    });
+    setErrors({});
+    setTouched({});
+    setAddrQuery("");
+    setAddrSuggestions([]);
+    setAddrOpen(false);
+  } catch (err) {
+    console.error(err);
+    showToast("error", err?.message || "Failed to send. Try again.");
+  } finally {
+    setIsLoading(false);
+  }
+};
   return (
     <section
       id="contact"
@@ -209,7 +346,7 @@ const ContactUs = () => {
               },
               {
                 icon: <MdLocationOn size={22} />,
-                title: "Location",
+                title: "Address",
                 value:
                   "3A, Bertram St, Esplanade, Dharmatala, Taltala, Kolkata, West Bengal 700087",
                 link:
@@ -236,9 +373,7 @@ const ContactUs = () => {
                   <h4 className="text-lg font-semibold text-gray-900 mb-1">
                     {item.title}
                   </h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {item.value}
-                  </p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.value}</p>
                 </div>
               </a>
             ))}
@@ -247,25 +382,22 @@ const ContactUs = () => {
           {/* Contact Form */}
           <div data-aos="fade-left">
             <div className="bg-white rounded-3xl shadow-xl p-10 border border-gray-100">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                Send a Message
-              </h3>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-2">Send a Message</h3>
               <p className="text-gray-600 text-sm mb-8">
                 Fill out the form below and we'll respond within 24 hours.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Row 1: Name | Email */}
+              <form onSubmit={handleSubmit} className="space-y-6" autoComplete="on">
+                {/* Row 1 */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {/* Name Input */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-800 mb-2">
-                      Full Name
-                      <span className="text-red-500 ml-1">*</span>
+                      Full Name <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
                       type="text"
                       name="name"
+                      autoComplete="name"
                       value={form.name}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -277,21 +409,18 @@ const ContactUs = () => {
                       }`}
                     />
                     {errors.name && touched.name && (
-                      <p className="text-red-600 text-xs mt-2 font-medium">
-                        {errors.name}
-                      </p>
+                      <p className="text-red-600 text-xs mt-2 font-medium">{errors.name}</p>
                     )}
                   </div>
 
-                  {/* Email Input */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-800 mb-2">
-                      Email Address
-                      <span className="text-red-500 ml-1">*</span>
+                      Email Address <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
                       type="email"
                       name="email"
+                      autoComplete="email"
                       value={form.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -303,24 +432,21 @@ const ContactUs = () => {
                       }`}
                     />
                     {errors.email && touched.email && (
-                      <p className="text-red-600 text-xs mt-2 font-medium">
-                        {errors.email}
-                      </p>
+                      <p className="text-red-600 text-xs mt-2 font-medium">{errors.email}</p>
                     )}
                   </div>
                 </div>
 
-                {/* Row 2: Phone | Location */}
+                {/* Row 2 */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {/* Phone Input */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-800 mb-2">
-                      Phone Number
-                      <span className="text-red-500 ml-1">*</span>
+                      Phone Number <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
                       type="tel"
                       name="mobile"
+                      autoComplete="tel"
                       value={form.mobile}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -332,34 +458,73 @@ const ContactUs = () => {
                       }`}
                     />
                     {errors.mobile && touched.mobile && (
-                      <p className="text-red-600 text-xs mt-2 font-medium">
-                        {errors.mobile}
-                      </p>
+                      <p className="text-red-600 text-xs mt-2 font-medium">{errors.mobile}</p>
                     )}
                   </div>
 
-                  {/* Location Input */}
-                  <div>
+                  {/* ✅ Address with suggestions */}
+                  <div className="relative" ref={dropdownRef}>
                     <label className="block text-sm font-semibold text-gray-800 mb-2">
-                      Location
-                      <span className="text-red-500 ml-1">*</span>
+                      Address <span className="text-red-500 ml-1">*</span>
                     </label>
+
                     <input
                       type="text"
-                      name="location"
-                      value={form.location}
+                      name="address"
+                      autoComplete="street-address"
+                      value={addrQuery}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      placeholder="Enter your location/city"
+                      onFocus={() => {
+                        if (addrSuggestions.length) setAddrOpen(true);
+                      }}
+                      placeholder="Type your address/city"
                       className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 focus:outline-none font-medium text-sm ${
-                        errors.location && touched.location
+                        errors.address && touched.address
                           ? "border-red-500 bg-red-50/50"
                           : "border-gray-200 bg-gray-50 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100"
                       }`}
                     />
-                    {errors.location && touched.location && (
-                      <p className="text-red-600 text-xs mt-2 font-medium">
-                        {errors.location}
+
+                    {/* Suggestions dropdown */}
+                    {addrOpen && (addrLoading || addrSuggestions.length > 0) && (
+                      <div className="absolute z-50 mt-2 w-full rounded-2xl border border-gray-200 bg-white shadow-xl overflow-hidden">
+                        {addrLoading && (
+                          <div className="px-4 py-3 text-sm text-gray-600">
+                            Searching location...
+                          </div>
+                        )}
+
+                        {!addrLoading &&
+                          addrSuggestions.map((item) => (
+                            <button
+                              key={item.place_id}
+                              type="button"
+                              onMouseDown={(e) => e.preventDefault()} // prevent blur
+                              onClick={() => selectSuggestion(item)}
+                              className="w-full text-left px-4 py-3 hover:bg-gray-50 transition text-sm text-gray-800"
+                              title={item.display_name}
+                            >
+                              {item.display_name}
+                            </button>
+                          ))}
+
+                        {!addrLoading && addrSuggestions.length === 0 && (
+                          <div className="px-4 py-3 text-sm text-gray-600">
+                            No results. Try a more specific address.
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {errors.address && touched.address && (
+                      <p className="text-red-600 text-xs mt-2 font-medium">{errors.address}</p>
+                    )}
+
+                    {/* ✅ Show lat/lon if selected */}
+                    {form.lat && form.lon && (
+                      <p className="text-xs text-gray-500 mt-2">
+                        Location pinned: {form.lat}, {form.lon}
                       </p>
                     )}
                   </div>
@@ -369,14 +534,9 @@ const ContactUs = () => {
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <label className="block text-sm font-semibold text-gray-800">
-                      Message
-                      <span className="text-gray-400 font-normal text-xs ml-2">
-                        (Optional)
-                      </span>
+                      Message <span className="text-gray-400 font-normal text-xs ml-2">(Optional)</span>
                     </label>
-                    <span className="text-xs text-gray-500">
-                      {form.message.length}/500
-                    </span>
+                    <span className="text-xs text-gray-500">{form.message.length}/500</span>
                   </div>
                   <textarea
                     name="message"
@@ -409,13 +569,13 @@ const ContactUs = () => {
         </div>
       </div>
 
-      {/* Toast */}
+      {/* ✅ Toast — Bottom Right */}
       {toast.show && (
         <div
-          className={`fixed bottom-10 right-10 px-6 py-4 rounded-full shadow-2xl z-50 ${
+          className={`fixed bottom-6 right-6 px-5 py-3 rounded-xl shadow-2xl z-[9999] border text-sm font-semibold ${
             toast.type === "success"
-              ? "bg-green-100 text-green-700"
-              : "bg-red-100 text-red-700"
+              ? "bg-green-100 text-green-700 border-green-200"
+              : "bg-red-100 text-red-700 border-red-200"
           }`}
         >
           {toast.message}
