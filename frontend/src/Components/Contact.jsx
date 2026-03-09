@@ -212,7 +212,7 @@ const ContactUs = () => {
 
     setForm((prev) => ({
       ...prev,
-      address: formatted, // fill in field with correct formatted address
+      address: formatted, 
       formattedAddress: formatted,
       lat,
       lon,
@@ -222,7 +222,6 @@ const ContactUs = () => {
     setAddrOpen(false);
     setAddrSuggestions([]);
 
-    // validate immediately if already touched
     setErrors((prev) => ({ ...prev, address: validateField("address", formatted) }));
     setTouched((prev) => ({ ...prev, address: true }));
   };
@@ -265,13 +264,13 @@ const ContactUs = () => {
       "https://script.google.com/macros/s/AKfycbwTGN-QWyr2BPbV9NGUCWSTpcv9SO_PqQsiNxz-KSOQqoyhm3ZTVyYALMWg3fZYLWSX/exec",
       {
         method: "POST",
-        // ✅ Apps Script friendly content-type
+    
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(payload),
       }
     );
 
-    // ✅ Always read text first (works even if server returns HTML)
+
     const text = await response.text();
 
     let result;

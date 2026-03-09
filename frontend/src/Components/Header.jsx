@@ -139,7 +139,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="md:hidden bg-[#1e2b4f] border-t border-white/10">
+          <div className="md:hidden bg-[#1e2b4f] border-t border-white/10 mt-[110px]">
             <div className="flex flex-col px-6 py-6 gap-6">
               {navItems.map((item) => (
                 <button
@@ -158,9 +158,6 @@ const Header = () => {
           </div>
         )}
       </header>
-
-      {/* Spacer */}
-      <div style={{ height: HEADER_HEIGHT }} />
     </>
   );
 };
