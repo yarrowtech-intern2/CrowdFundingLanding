@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React from "react";
+import { motion } from "framer-motion";
 import { MdLock, MdGavel, MdVerified } from "react-icons/md";
 
 const items = [
@@ -9,40 +8,41 @@ const items = [
     title: "Data Encryption",
     desc: "All transactions and personal data are encrypted with 256-bit SSL, ensuring your financial information remains completely private and protected from unauthorized access.",
     icon: <MdLock size={22} color="white" />,
+    direction: -70, // from left
   },
   {
     id: 2,
     title: "Regulatory Compliance",
     desc: "Fully compliant with SEBI and government regulations. Our platform undergoes regular audits to ensure adherence to all applicable financial laws and investor protection guidelines.",
     icon: <MdGavel size={22} color="white" />,
+    direction: 0, // from bottom
+    y: 50
   },
   {
     id: 3,
     title: "Verified Properties",
     desc: "All listed investments are thoroughly vetted by our expert team. Every property undergoes a rigorous due diligence process before being made available to investors on our platform.",
     icon: <MdVerified size={22} color="white" />,
+    direction: 70, // from right
   },
 ];
 
 const SecurityCompliance = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      easing: "ease-out-cubic",
-      once: true,
-      offset: 80,
-    });
-  }, []);
-
   return (
     <section
       id="security"
-      className="w-full bg-[#f6f7fb] py-20 md:py-28"
+      className="w-full bg-[#f6f7fb] py-20 md:py-28 overflow-hidden"
     >
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
 
-        {/* HEADER */}
-        <div className="text-center mb-16 md:mb-20" data-aos="fade-up">
+        {/* HEADER (Slides from Bottom) */}
+        <motion.div 
+          className="text-center mb-16 md:mb-20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+        >
           <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#2e66ff] bg-[#eef2ff] px-4 py-1.5 rounded-full mb-4">
             Trust & Safety
           </span>
@@ -53,15 +53,17 @@ const SecurityCompliance = () => {
               Compliance
             </span>
           </h2>
-        </div>
+        </motion.div>
 
-        {/* CARDS */}
+        {/* CARDS (Animated from sides and bottom) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {items.map((item, index) => (
-            <div
+            <motion.div
               key={item.id}
-              data-aos="fade-up"
-              data-aos-delay={index * 150}
+              initial={{ opacity: 0, x: item.direction || 0, y: item.y || 40 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.7, delay: index * 0.1, ease: [0.23, 1, 0.32, 1] }}
               className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col group"
             >
               {/* Icon */}
@@ -81,7 +83,7 @@ const SecurityCompliance = () => {
               <p className="text-gray-600 text-sm md:text-base leading-relaxed flex-1">
                 {item.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
 

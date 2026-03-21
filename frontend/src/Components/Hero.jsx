@@ -1,118 +1,18 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import HeroVideo from "../assets/video.mp4";
+import { Helmet } from "react-helmet-async";
+import handshakeImg from "../assets/handshake.png";
+import { UserPlus, Wallet, ArrowRightLeft } from "lucide-react";
 
-// ─── Blue Canvas Animated Background ─────────────────────────────────────────
-const BlueAnimatedBackground = () => {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    let animationFrameId;
-
-    const resizeCanvas = () => {
-      const parent = document.getElementById("home");
-      if (parent) {
-        canvas.width = parent.offsetWidth;
-        canvas.height = parent.offsetHeight;
-      } else {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-    };
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-    setTimeout(resizeCanvas, 50);
-
-    const gridSize = 60;
-    let offset = 0;
-
-    const particles = Array.from({ length: 60 }).map(() => ({
-      x: Math.random() * (canvas.width || window.innerWidth),
-      y: Math.random() * (canvas.height || window.innerHeight),
-      size: Math.random() * 3 + 1,
-      speedY: Math.random() * 0.8 + 0.2,
-      opacity: Math.random() * 0.4 + 0.1,
-    }));
-
-    const draw = () => {
-      const w = canvas.width;
-      const h = canvas.height;
-      ctx.clearRect(0, 0, w, h);
-
-      // Light Blue/Slate gradient background to keep the UI legible
-      const gradient = ctx.createLinearGradient(0, 0, w, h);
-      gradient.addColorStop(0, "#e0e7ff"); // indigo-100
-      gradient.addColorStop(0.5, "#bfdbfe"); // blue-200
-      gradient.addColorStop(1, "#dbeafe"); // blue-100
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, w, h);
-
-      // Perspective grid - vertical lines (Blue)
-      ctx.strokeStyle = "rgba(37, 99, 235, 0.4)"; // blue-600
-      ctx.lineWidth = 1.5;
-      const centerX = w / 2;
-      for (let i = 0; i <= w; i += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(centerX, h);
-        ctx.lineTo(i, 0);
-        ctx.stroke();
-      }
-
-      // Horizontal lines with motion
-      offset = (offset + 0.5) % gridSize;
-      for (let i = h; i >= 0; i -= gridSize) {
-        const currentY = i + offset;
-        ctx.beginPath();
-        ctx.moveTo(0, currentY);
-        ctx.lineTo(w, currentY);
-        ctx.strokeStyle = `rgba(37, 99, 235, ${Math.max(0, (currentY / h) * 0.5)})`;
-        ctx.stroke();
-      }
-
-      // Floating blue particles
-      particles.forEach((p) => {
-        ctx.beginPath();
-        const flicker = Math.random() * 0.2 + p.opacity;
-        ctx.fillStyle = `rgba(29, 78, 216, ${flicker + 0.2})`; // blue-700
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-        p.y -= p.speedY;
-        if (p.y < 0) {
-          p.y = h;
-          p.x = Math.random() * w;
-        }
-      });
-
-      animationFrameId = requestAnimationFrame(draw);
-    };
-
-    draw();
-
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute top-0 left-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 0 }}
-    />
-  );
-};
-// ─────────────────────────────────────────────────────────────────────────────
 
 const Hero = () => {
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (!element) return;
 
     const navbarOffset = 110;
+
     const y =
       element.getBoundingClientRect().top +
       window.pageYOffset -
@@ -124,179 +24,255 @@ const Hero = () => {
     });
   };
 
-  // Staggered container animation
+  const slideInVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.9,
+        ease: [0.23, 1, 0.320, 1],
+      },
+    },
+  };
+
+  const buttonVariants = {
+    rest: { scale: 1 },
+    hover: {
+      scale: 1.05,
+      transition: { duration: 0.25 },
+    },
+    tap: { scale: 0.98 },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        delay: 0.4,
+        ease: [0.23, 1, 0.320, 1],
+      },
+    },
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
+        staggerChildren: 0.3,
       },
     },
   };
 
-  // Individual item animations
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.23, 1, 0.320, 1], // Custom cubic-bezier for smooth ease
+        ease: [0.23, 1, 0.32, 1],
       },
     },
   };
 
-  // Slide from right animation
-  const slideInRightVariants = {
-    hidden: { opacity: 0, x: -60 },
+  const itemSlideLeft = {
+    hidden: { opacity: 0, x: -50 },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.9,
-        ease: [0.23, 1, 0.320, 1],
+        duration: 0.8,
+        ease: [0.23, 1, 0.32, 1],
       },
     },
   };
 
-  // Slide from left animation
-  const slideInLeftVariants = {
-    hidden: { opacity: 0, x: 60 },
+  const itemSlideRight = {
+    hidden: { opacity: 0, x: 50 },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.9,
-        ease: [0.23, 1, 0.320, 1],
+        duration: 0.8,
+        ease: [0.23, 1, 0.32, 1],
       },
     },
   };
 
-  // Floating animation for background blurs
-  const floatVariants = {
-    initial: { y: 0 },
-    animate: {
-      y: [0, 30, 0],
-      transition: {
-        duration: 6,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
-  // Subtle scale on button hover
-  const buttonVariants = {
-    rest: { scale: 1 },
-    hover: {
-      scale: 1.05,
-      transition: { duration: 0.3, ease: "easeOut" },
-    },
-    tap: { scale: 0.98 },
-  };
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen flex items-center overflow-hidden bg-transparent"
+      className="relative w-full min-h-screen flex items-center justify-center bg-[#fdfdff] overflow-hidden"
     >
-      <BlueAnimatedBackground />
+      <Helmet>
+        <title>M8-BID | Leading Modern Crowdfunding Platform</title>
+        <meta name="description" content="M8-BID: The definitive arena where radical vision meets elite capital. Transform extraordinary sparks into market-defining landmarks through our secure crowdfunding platform." />
+      </Helmet>
+      {/* 1. Subtle Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+           style={{ backgroundImage: `radial-gradient(#4f46e5 0.5px, transparent 0.5px)`, backgroundSize: '24px 24px' }} />
+      
+      {/* 2. Abstract Mesh Glows */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div 
+          animate={{ x: [0, 40, 0], y: [0, -30, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-[10%] -left-[10%] w-[60%] h-[70%] bg-indigo-100/40 rounded-full blur-[120px]" 
+        />
+        <motion.div 
+          animate={{ x: [0, -40, 0], y: [0, 30, 0], scale: [1, 1.2, 1] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute -bottom-[10%] -right-[10%] w-[60%] h-[70%] bg-purple-100/40 rounded-full blur-[120px]" 
+        />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-b from-transparent via-white/50 to-white" />
+      </div>
 
-      <div className="relative w-full max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center z-10">
-        {/* LEFT CONTENT */}
-        <motion.div
-          variants={slideInRightVariants}
+      <div className="w-full max-w-7xl mx-auto px-6 py-20 lg:py-32 relative z-10">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
+          {/* Left Column: Text Content (Slides from Left) */}
+          <motion.div 
+            className="text-left order-2 md:order-1"
+            initial={{ opacity: 0, x: -70 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-indigo-100 shadow-sm mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
+              </span>
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600">
+                Fundraising Platform
+              </span>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-[#0f172a] leading-[1.1] mb-8 tracking-tight">
+              Turn Your <br />
+              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent italic font-serif">
+                Vision
+              </span>
+              <br />
+              into a Legacy.
+            </h1>
+
+            <p className="text-lg text-slate-500 max-w-md leading-relaxed mb-10 font-medium">
+              The definitive arena where radical vision meets elite capital. 
+              We transform extraordinary sparks into market-defining landmarks.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <motion.button
+                onClick={() => scrollToSection("fundraise")}
+                className="px-9 py-4 bg-indigo-600 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform active:scale-95 hover:bg-indigo-700"
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+                initial="rest"
+              >
+                Start A Fundraiser
+              </motion.button>
+
+              <motion.button
+                onClick={() => scrollToSection("contact")}
+                className="px-9 py-4 bg-white text-indigo-600 font-bold rounded-2xl border-2 border-indigo-50 hover:border-indigo-100 hover:bg-indigo-50/50 transition-all duration-300 shadow-sm"
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+                initial="rest"
+              >
+                Join Network
+              </motion.button>
+            </div>
+          </motion.div>
+
+          {/* Right Column: Hero Image (Slides from Right) */}
+          <motion.div 
+            className="relative order-1 md:order-2"
+            initial={{ opacity: 0, x: 70 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1], delay: 0.1 }}
+          >
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 blur-3xl rounded-full" />
+              <div className="relative p-2 bg-white/40 backdrop-blur-md rounded-[2.5rem] border border-white/60 shadow-2xl group transition-all duration-700 hover:scale-[1.02]">
+                <img
+                  src={handshakeImg}
+                  alt="Business Partnership"
+                  className="rounded-[2rem] w-full h-auto object-cover aspect-[4/3] lg:aspect-square"
+                />
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
+
+        {/* --- STEPS SECTION --- */}
+        <motion.div 
+          className="mt-20 lg:mt-32 pt-12 border-t border-indigo-100/50"
+          variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
-          <motion.p
-            className="text-sm font-bold uppercase tracking-widest text-indigo-600 mb-6"
-            variants={itemVariants}
-          >
-            Crowdfunding Platform
-          </motion.p>
-
-          <motion.h1
-            className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight mb-8"
-            variants={itemVariants}
-          >
-            Successful{" "}
-            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text italic text-transparent">
-              Fundraisers
-            </span>
-            <br />
-            Start Here
-          </motion.h1>
-
-          <motion.p
-            className="text-lg text-slate-600 max-w-lg leading-relaxed mb-10"
-            variants={itemVariants}
-          >
-            Raise funds for your startup, idea, or mission. Connect with investors and supporters worldwide.
-          </motion.p>
-
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            {/* Primary Button */}
-            <motion.button
-              onClick={() => scrollToSection("fundraise")}
-              className="px-8 py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300"
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-              initial="rest"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            
+            {/* Step 1: Left to Right */}
+            <motion.div 
+              variants={itemSlideLeft}
+              className="group flex items-start gap-5 p-6 rounded-3xl hover:bg-white hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-500"
             >
-              Start A Fundraiser
-            </motion.button>
+              <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-indigo-50 flex items-center justify-center group-hover:bg-indigo-600 transition-colors duration-500">
+                <UserPlus className="w-7 h-7 text-indigo-600 group-hover:text-white transition-colors duration-500" />
+              </div>
+              <div>
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-400 mb-1 block">Step 01</span>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Sign Up / Add Bank Details</h3>
+                <p className="text-sm text-slate-500 leading-relaxed font-medium">Create your secure profile and link your bank account to start your journey.</p>
+              </div>
+            </motion.div>
 
-            {/* Secondary Button */}
-            <motion.button
-              onClick={() => scrollToSection("contact")}
-              className="px-8 py-3.5 bg-white text-slate-700 font-semibold rounded-lg border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-300"
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-              initial="rest"
+            {/* Step 2: Center (Slightly different or vertical slide if preferred, but following the 'alternating side' flow) */}
+            <motion.div 
+              variants={itemVariants} 
+              className="group flex items-start gap-5 p-6 rounded-3xl hover:bg-white hover:shadow-xl hover:shadow-purple-500/5 transition-all duration-500"
             >
-              Get Started
-            </motion.button>
-          </motion.div>
-        </motion.div>
+              <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-purple-50 flex items-center justify-center group-hover:bg-purple-600 transition-colors duration-500">
+                <Wallet className="w-7 h-7 text-purple-600 group-hover:text-white transition-colors duration-500" />
+              </div>
+              <div>
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-purple-400 mb-1 block">Step 02</span>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Fundraise or Invest</h3>
+                <p className="text-sm text-slate-500 leading-relaxed font-medium">Browse verified projects/startups or launch your own campaign to secure capital.</p>
+              </div>
+            </motion.div>
 
-        {/* RIGHT VIDEO */}
-        <motion.div
-          className="relative h-[350px] sm:h-[400px] md:h-[500px] lg:h-[550px] mt-4 md:mt-8 lg:mt-12"
-          variants={slideInLeftVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <motion.div
-            className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-slate-200"
-            whileHover={{ boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
-            transition={{ duration: 0.3 }}
-          >
-            <video
-              src={HeroVideo}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              controls
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+            {/* Step 3: Right to Left */}
+            <motion.div 
+              variants={itemSlideRight}
+              className="group flex items-start gap-5 p-6 rounded-3xl hover:bg-white hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-500"
+            >
+              <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-indigo-50 flex items-center justify-center group-hover:bg-indigo-600 transition-colors duration-500">
+                <ArrowRightLeft className="w-7 h-7 text-indigo-600 group-hover:text-white transition-colors duration-500" />
+              </div>
+              <div>
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-400 mb-1 block">Step 03</span>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Withdraw / Receive Money</h3>
+                <p className="text-sm text-slate-500 leading-relaxed font-medium">Seamlessly manage your returns or receive fundraised money with elite security.</p>
+              </div>
+            </motion.div>
+
+          </div>
         </motion.div>
       </div>
+
     </section>
   );
 };

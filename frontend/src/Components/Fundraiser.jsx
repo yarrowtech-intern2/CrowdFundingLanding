@@ -1,56 +1,51 @@
-import React, { useEffect } from "react";
-import heroImg from "../assets/Fundraiser.jpg";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React from "react";
+import fundraiserImg from "../assets/Fundraiser.png";
+import { motion } from "framer-motion";
 
 const FundraiserSection = () => {
-
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      easing: "ease-out-cubic",
-      once: true,
-      offset: 80,
-    });
-  }, []);
-
   return (
     <section
       id="fundraise"
-      className="w-full min-h-screen bg-gradient-to-b from-[#f8f9ff] via-[#f3f5ff] to-[#eef2ff] flex items-center"
+      className="w-full min-h-screen bg-gradient-to-b from-[#f8f9ff] via-[#f3f5ff] to-[#eef2ff] flex items-center overflow-hidden"
     >
       <div className="mx-auto max-w-6xl px-4 md:px-8 grid md:grid-cols-2 gap-16 items-center w-full">
 
-        {/* LEFT IMAGE */}
-        <div className="relative group" data-aos="fade-right">
+        {/* LEFT IMAGE (Slides from Left) */}
+        <motion.div 
+          className="relative group"
+          initial={{ opacity: 0, x: -70 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+        >
           <div className="absolute -inset-1 bg-gradient-to-r from-[#2e66ff] to-[#4f8cff] rounded-3xl blur-lg opacity-15 group-hover:opacity-25 transition duration-500"></div>
-
           <img
-            src={heroImg}
+            src={fundraiserImg}
             alt="Fundraiser"
             className="relative rounded-3xl shadow-2xl w-full object-cover transition duration-700 group-hover:scale-105"
           />
-        </div>
+        </motion.div>
 
-        {/* RIGHT CONTENT */}
-        <div data-aos="fade-left">
+        {/* RIGHT CONTENT (Slides from Right) */}
+        <motion.div 
+          initial={{ opacity: 0, x: 70 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1], delay: 0.1 }}
+        >
           <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#2e66ff] bg-[#eef2ff] px-4 py-1.5 rounded-full mb-6">
             Fundraising Platform
           </span>
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#1e2b4f] leading-[1.1] mb-6">
-            Start a Business <br />
-            <span className="text-[#2e66ff] italic">Fundraiser</span>
+            Ignite Your Ambition. <br />
+            <span className="text-[#2e66ff] italic">Architect the Future</span>
           </h1>
 
-          <p className="text-[15px] md:text-lg text-gray-600 leading-relaxed mb-4 max-w-xl">
-            No fees to start or deadlines to meet. Raise funds to power your business dreams.
+          <p className="text-[15px] md:text-lg text-gray-600 leading-relaxed mb-6 max-w-xl">
+            Launch your vision with **0% platform fees**, global reach, and a direct line to elite capital. We provide the tools and exposure you need to transition from an idea to a global market leader with unshakeable speed.
           </p>
-
-          <p className="text-[15px] md:text-lg text-gray-600 leading-relaxed max-w-xl">
-            Present your idea to a trusted network of investors and secure the capital needed to scale confidently.
-          </p>
-        </div>
+        </motion.div>
 
       </div>
     </section>

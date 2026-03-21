@@ -1,4 +1,5 @@
 import React from "react";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 import Header from "./Components/Header";
 import Hero from "./Components/Hero";
 import Investor from "./Components/Investor";
@@ -11,7 +12,12 @@ import Floating from "./Components/Floating";
 
 const App = () => {
   return (
-    <>
+    <HelmetProvider>
+      <Helmet>
+        <title>Crowd Funding - Empowerment through Community</title>
+        <meta name="description" content="A next-generation crowd funding platform connecting visionaries with investors for impactful projects." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Helmet>
       <Header />
       <Hero />
       <Investor />
@@ -21,7 +27,7 @@ const App = () => {
       <Contact />
       <Footer />
       <Floating />
-    </>
+    </HelmetProvider>
   );
 };
 

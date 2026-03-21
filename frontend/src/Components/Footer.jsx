@@ -9,7 +9,7 @@ const Footer = () => {
   const quickLinks = [
     { name: "Home", id: "home" },
     { name: "About", id: "about" },
-    { name: "Investors", id: "investors" }, // Updated
+    { name: "Investors", id: "investors" }, 
     { name: "Security", id: "security" },
     { name: "Contact", id: "contact" },
   ];
@@ -38,7 +38,7 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <h3 className="text-2xl font-bold text-white mb-6">
-              Crowd Funding
+              M8-BID
             </h3>
 
             <p className="text-gray-400 leading-relaxed">
@@ -75,23 +75,34 @@ const Footer = () => {
 
             <div className="space-y-4 text-sm mb-6">
 
-              <div className="flex items-start gap-3">
+              <a 
+                href="https://www.google.com/maps?q=3A%20Bertram%20St%2C%20Esplanade%2C%20Dharmatala%2C%20Taltala%2C%20Kolkata%2C%20West%20Bengal%20700087" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 hover:text-indigo-400 transition-colors duration-300"
+              >
                 <MdLocationOn className="text-indigo-400 mt-1" size={18} />
                 <span>
                   3A, Bertram St, Esplanade, Dharmatala, Taltala,
                   Kolkata, West Bengal 700087
                 </span>
-              </div>
+              </a>
 
-              <div className="flex items-center gap-3">
+              <a 
+                href="mailto:hello@example.com"
+                className="flex items-center gap-3 hover:text-indigo-400 transition-colors duration-300 w-fit"
+              >
                 <MdEmail className="text-indigo-400" size={18} />
                 <span>hello@example.com</span>
-              </div>
+              </a>
 
-              <div className="flex items-center gap-3">
+              <a 
+                href="tel:+919830590929"
+                className="flex items-center gap-3 hover:text-indigo-400 transition-colors duration-300 w-fit"
+              >
                 <MdPhone className="text-indigo-400" size={18} />
                 <span>+91 98305 90929</span>
-              </div>
+              </a>
             </div>
 
             {/* Google Map */}
