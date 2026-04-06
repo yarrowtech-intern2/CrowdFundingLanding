@@ -21,7 +21,7 @@ const AboutUs = () => {
             About Us
           </span>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#1e2b4f] leading-[1.1] mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1e2b4f] leading-[1.1] mb-6">
             Architecting a World Where <br />
             <span className="text-[#2e66ff] italic">Innovation Has No Limits</span>
           </h2>
@@ -34,7 +34,7 @@ const AboutUs = () => {
 
         {/* RIGHT IMAGE (Slides from Right) */}
         <motion.div 
-          className="relative group"
+          className="relative group max-w-sm sm:max-w-md lg:max-w-full mx-auto w-full"
           initial={{ opacity: 0, x: 70 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -44,7 +44,7 @@ const AboutUs = () => {
           <img
             src={aboutImg}
             alt="About Us"
-            className="relative rounded-3xl shadow-2xl w-full object-cover transition duration-700 group-hover:scale-105"
+            className="relative rounded-3xl shadow-2xl w-full h-auto object-cover transition duration-700 group-hover:scale-105"
           />
         </motion.div>
 
@@ -53,4 +53,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutUs;

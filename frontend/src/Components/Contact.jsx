@@ -312,20 +312,20 @@ const ContactUs = () => {
   return (
     <section
       id="contact"
-      className="relative py-24 bg-gradient-to-b from-[#f8faff] via-white to-[#f3f6ff] overflow-hidden"
+      className="relative py-20 md:py-24 bg-gradient-to-b from-[#f8faff] via-white to-[#f3f6ff] overflow-hidden"
     >
       {/* Background Blur */}
-      <div className="absolute -top-40 -right-40 w-[400px] h-[400px] bg-indigo-200/30 rounded-full blur-3xl" />
-      <div className="absolute -bottom-40 -left-40 w-[400px] h-[400px] bg-blue-200/30 rounded-full blur-3xl" />
+      <div className="absolute -top-40 -right-40 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-indigo-200/30 rounded-full blur-3xl" />
+      <div className="absolute -bottom-40 -left-40 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-blue-200/30 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-20" data-aos="fade-up">
-          <span className="inline-block text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-100 px-5 py-2 rounded-full mb-6">
+        <div className="text-center mb-12 md:mb-20" data-aos="fade-up">
+          <span className="inline-block text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-100 px-5 py-2 rounded-full mb-5">
             Contact Us
           </span>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Let's Start a{" "}
             <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text italic text-transparent">
               Conversation
@@ -333,9 +333,9 @@ const ContactUs = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
           {/* Contact Info */}
-          <div className="space-y-8" data-aos="fade-right">
+          <div className="space-y-5 sm:space-y-8" data-aos="fade-right">
             {[
               {
                 icon: <MdEmail size={22} />,
@@ -363,13 +363,13 @@ const ContactUs = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-5 bg-white rounded-3xl p-8 shadow-md border border-gray-100 hover:shadow-2xl z-50 hover:-translate-y-1 transition-all duration-300"
+                className="group flex items-start gap-4 sm:gap-5 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md border border-gray-100 hover:shadow-2xl z-50 hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="h-12 w-12 flex items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-lg group-hover:scale-110 transition">
+                <div className="flex-shrink-0 h-11 w-11 sm:h-12 sm:w-12 flex items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-lg group-hover:scale-110 transition">
                   {item.icon}
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-1">
+                  <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-1">
                     {item.title}
                   </h4>
                   <p className="text-gray-600 text-sm leading-relaxed">{item.value}</p>
@@ -380,13 +380,13 @@ const ContactUs = () => {
 
           {/* Contact Form */}
           <div data-aos="fade-left">
-            <div className="bg-white rounded-3xl shadow-xl p-10 border border-gray-100">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-2">Send a Message</h3>
-              <p className="text-gray-600 text-sm mb-8">
+            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-6 sm:p-10 border border-gray-100">
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">Send a Message</h3>
+              <p className="text-gray-600 text-sm mb-6 sm:mb-8">
                 Fill out the form below and we'll respond within 24 hours.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-6" autoComplete="on">
+              <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6" autoComplete="on">
                 {/* Row 1 */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>

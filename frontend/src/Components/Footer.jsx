@@ -1,15 +1,11 @@
 import React from "react";
-import {
-  MdEmail,
-  MdPhone,
-  MdLocationOn,
-} from "react-icons/md";
+import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
 
 const Footer = () => {
   const quickLinks = [
     { name: "Home", id: "home" },
     { name: "About", id: "about" },
-    { name: "Investors", id: "investors" }, 
+    { name: "Investors", id: "investors" },
     { name: "Security", id: "security" },
     { name: "Contact", id: "contact" },
   ];
@@ -17,15 +13,12 @@ const Footer = () => {
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
-      section.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
   return (
-    <footer className="bg-[#0f172a] text-gray-300 pt-20 pb-10 relative overflow-hidden">
+    <footer className="bg-[#0f172a] text-gray-300 pt-16 sm:pt-20 pb-10 relative overflow-hidden">
 
       {/* Gradient Top Border */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600" />
@@ -33,15 +26,14 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 mb-12 sm:mb-16">
 
-          {/* Company Info */}
-          <div>
-            <h3 className="text-2xl font-bold text-white mb-6">
+          {/* Company Info — spans full width on tablet */}
+          <div className="sm:col-span-2 lg:col-span-1">
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
               M8-BID
             </h3>
-
-            <p className="text-gray-400 leading-relaxed">
+            <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
               Empowering investors and startups through secure,
               transparent, and compliant crowdfunding solutions.
             </p>
@@ -49,16 +41,15 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-semibold mb-6 text-lg">
+            <h4 className="text-white font-semibold mb-4 sm:mb-6 text-base sm:text-lg">
               Quick Links
             </h4>
-
-            <ul className="space-y-4">
+            <ul className="space-y-3 sm:space-y-4">
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <button
                     onClick={() => scrollToSection(link.id)}
-                    className="hover:text-indigo-400 transition duration-300 text-left"
+                    className="text-sm sm:text-base hover:text-indigo-400 transition duration-300 text-left"
                   >
                     {link.name}
                   </button>
@@ -69,38 +60,34 @@ const Footer = () => {
 
           {/* Contact + Map */}
           <div>
-            <h4 className="text-white font-semibold mb-6 text-lg">
+            <h4 className="text-white font-semibold mb-4 sm:mb-6 text-base sm:text-lg">
               Contact Info
             </h4>
 
-            <div className="space-y-4 text-sm mb-6">
-
-              <a 
-                href="https://www.google.com/maps?q=3A%20Bertram%20St%2C%20Esplanade%2C%20Dharmatala%2C%20Taltala%2C%20Kolkata%2C%20West%20Bengal%20700087" 
-                target="_blank" 
+            <div className="space-y-3 sm:space-y-4 text-sm mb-6">
+              <a
+                href="https://www.google.com/maps?q=3A%20Bertram%20St%2C%20Esplanade%2C%20Dharmatala%2C%20Taltala%2C%20Kolkata%2C%20West%20Bengal%20700087"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-start gap-3 hover:text-indigo-400 transition-colors duration-300"
               >
-                <MdLocationOn className="text-indigo-400 mt-1" size={18} />
-                <span>
-                  3A, Bertram St, Esplanade, Dharmatala, Taltala,
-                  Kolkata, West Bengal 700087
-                </span>
+                <MdLocationOn className="text-indigo-400 mt-1 flex-shrink-0" size={18} />
+                <span>3A, Bertram St, Esplanade, Dharmatala, Taltala, Kolkata, West Bengal 700087</span>
               </a>
 
-              <a 
+              <a
                 href="mailto:hello@example.com"
                 className="flex items-center gap-3 hover:text-indigo-400 transition-colors duration-300 w-fit"
               >
-                <MdEmail className="text-indigo-400" size={18} />
+                <MdEmail className="text-indigo-400 flex-shrink-0" size={18} />
                 <span>hello@example.com</span>
               </a>
 
-              <a 
+              <a
                 href="tel:+919830590929"
                 className="flex items-center gap-3 hover:text-indigo-400 transition-colors duration-300 w-fit"
               >
-                <MdPhone className="text-indigo-400" size={18} />
+                <MdPhone className="text-indigo-400 flex-shrink-0" size={18} />
                 <span>+91 98305 90929</span>
               </a>
             </div>
@@ -111,7 +98,7 @@ const Footer = () => {
                 title="Crowd Funding Location"
                 src="https://www.google.com/maps?q=3A%20Bertram%20St%2C%20Esplanade%2C%20Dharmatala%2C%20Taltala%2C%20Kolkata%2C%20West%20Bengal%20700087&output=embed"
                 width="100%"
-                height="200"
+                height="180"
                 style={{ border: 0 }}
                 loading="lazy"
               ></iframe>
@@ -121,14 +108,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-700 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-          <p>
-            © {new Date().getFullYear()} Crowd Funding. All rights reserved.
-          </p>
-
-          <p className="mt-4 md:mt-0">
-            Built with security & trust in mind.
-          </p>
+        <div className="border-t border-gray-700 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-sm text-gray-500">
+          <p>© {new Date().getFullYear()} Crowd Funding. All rights reserved.</p>
+          <p>Built with security &amp; trust in mind.</p>
         </div>
 
       </div>

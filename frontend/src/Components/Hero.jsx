@@ -110,7 +110,7 @@ const Hero = () => {
       className="relative w-full min-h-screen flex items-center justify-center bg-[#fdfdff] overflow-hidden"
     >
       <Helmet>
-        <title>M8-BID | Leading Modern Crowdfunding Platform</title>
+        <title>M8-BID</title>
         <meta name="description" content="M8-BID: The definitive arena where radical vision meets elite capital. Transform extraordinary sparks into market-defining landmarks through our secure crowdfunding platform." />
       </Helmet>
       {/* 1. Subtle Grid Pattern */}
@@ -132,8 +132,8 @@ const Hero = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-b from-transparent via-white/50 to-white" />
       </div>
 
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-28 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
           
           {/* Left Column: Text Content (Slides from Left) */}
           <motion.div 
@@ -143,7 +143,7 @@ const Hero = () => {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-indigo-100 shadow-sm mb-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-indigo-100 shadow-sm mb-6">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
@@ -153,7 +153,7 @@ const Hero = () => {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-[#0f172a] leading-[1.1] mb-8 tracking-tight">
+            <h1 className="text-[2.4rem] sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#0f172a] leading-[1.1] mb-6 tracking-tight">
               Turn Your <br />
               <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent italic font-serif">
                 Vision
@@ -162,15 +162,15 @@ const Hero = () => {
               into a Legacy.
             </h1>
 
-            <p className="text-lg text-slate-500 max-w-md leading-relaxed mb-10 font-medium">
+            <p className="text-base sm:text-lg text-slate-500 max-w-md leading-relaxed mb-8 font-medium">
               The definitive arena where radical vision meets elite capital. 
               We transform extraordinary sparks into market-defining landmarks.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col xs:flex-row sm:flex-row gap-3 sm:gap-4">
               <motion.button
                 onClick={() => scrollToSection("fundraise")}
-                className="px-9 py-4 bg-indigo-600 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform active:scale-95 hover:bg-indigo-700"
+                className="w-full sm:w-auto px-7 sm:px-9 py-3.5 sm:py-4 bg-indigo-600 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform active:scale-95 hover:bg-indigo-700 text-sm sm:text-base"
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
@@ -181,7 +181,7 @@ const Hero = () => {
 
               <motion.button
                 onClick={() => scrollToSection("contact")}
-                className="px-9 py-4 bg-white text-indigo-600 font-bold rounded-2xl border-2 border-indigo-50 hover:border-indigo-100 hover:bg-indigo-50/50 transition-all duration-300 shadow-sm"
+                className="w-full sm:w-auto px-7 sm:px-9 py-3.5 sm:py-4 bg-white text-indigo-600 font-bold rounded-2xl border-2 border-indigo-50 hover:border-indigo-100 hover:bg-indigo-50/50 transition-all duration-300 shadow-sm text-sm sm:text-base"
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
@@ -200,13 +200,13 @@ const Hero = () => {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1], delay: 0.1 }}
           >
-            <div className="relative">
+            <div className="relative max-w-sm sm:max-w-md lg:max-w-full mx-auto">
               <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 blur-3xl rounded-full" />
               <div className="relative p-2 bg-white/40 backdrop-blur-md rounded-[2.5rem] border border-white/60 shadow-2xl group transition-all duration-700 hover:scale-[1.02]">
                 <img
                   src={handshakeImg}
                   alt="Business Partnership"
-                  className="rounded-[2rem] w-full h-auto object-cover aspect-[4/3] lg:aspect-square"
+                  className="rounded-[2rem] w-full h-auto object-cover aspect-[4/3]"
                 />
               </div>
             </div>

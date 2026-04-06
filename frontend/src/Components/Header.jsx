@@ -53,78 +53,84 @@ const Header = () => {
       HEADER_HEIGHT;
 
     window.scrollTo({ top: y, behavior: "smooth" });
-
     setMenuOpen(false);
   };
 
   return (
-    <header className="fixed top-4 md:top-8 left-0 w-full z-50">
+    <header className="fixed top-4 md:top-6 left-0 w-full z-50 px-4 sm:px-6 lg:px-8">
 
-      <div className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
+      {/* flex layout with equal flex-1 sides keeps center nav perfectly centered */}
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
 
-        {/* Logo */}
+        {/* LEFT — Logo */}
         <div
           onClick={() => scrollToSection("home")}
-          className="cursor-pointer flex items-center gap-3"
+          className="cursor-pointer flex items-center gap-2 sm:gap-3 flex-1"
         >
-          {/* Circle Logo */}
-          <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center shadow-md">
-            <span className="text-white font-bold text-base">M8</span>
+          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-indigo-600 flex items-center justify-center shadow-md flex-shrink-0">
+            <span className="text-white font-bold text-sm">M8</span>
           </div>
-
-          {/* Logo Text */}
-          <span className="text-2xl font-bold text-black tracking-wide">
+          <span className="text-lg sm:text-xl font-bold text-black tracking-wide whitespace-nowrap">
             M8-BID
           </span>
         </div>
 
-        {/* Center Navigation */}
-        <div
-          className={`hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 px-8 py-4 rounded-full transition-all duration-300
-          ${
-            scrolled
-              ? "bg-white/80 backdrop-blur-xl shadow-lg"
-              : "bg-white/40 backdrop-blur-xl"
-          }`}
-        >
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`text-base font-medium transition-all duration-300 ${
-                activeSection === item.id
-                  ? "text-indigo-600"
-                  : "text-black hover:text-indigo-500"
-              }`}
-            >
-              {item.name}
-            </button>
-          ))}
-        </div>
-
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-black text-xl"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <FaTimes /> : <FaBars />}
-        </button>
-
-      </div>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[92%] bg-white rounded-xl shadow-lg md:hidden">
-          <div className="flex flex-col gap-6 px-6 py-6">
+        {/* CENTER — Desktop Navigation pill (always centered) */}
+        <div className="hidden md:flex flex-shrink-0">
+          <div
+            className={`flex items-center gap-5 lg:gap-8 px-5 lg:px-8 py-3 rounded-full transition-all duration-300 ${
+              scrolled
+                ? "bg-white/80 backdrop-blur-xl shadow-lg"
+                : "bg-white/40 backdrop-blur-xl"
+            }`}
+          >
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-left text-black font-medium text-lg"
+                className={`text-sm lg:text-base font-medium transition-all duration-300 whitespace-nowrap ${
+                  activeSection === item.id
+                    ? "text-indigo-600"
+                    : "text-black hover:text-indigo-500"
+                }`}
               >
                 {item.name}
               </button>
             ))}
+          </div>
+        </div>
+
+        {/* RIGHT — Mobile hamburger */}
+        <div className="flex-1 flex justify-end">
+          <button
+            className="md:hidden text-black text-xl p-2"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      {menuOpen && (
+        <div className="mt-3 w-full max-w-7xl mx-auto md:hidden">
+          <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100">
+            <div className="flex flex-col px-5 py-4">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`text-left py-3 text-base font-medium border-b border-gray-50 last:border-0 transition-colors duration-200 ${
+                    activeSection === item.id
+                      ? "text-indigo-600"
+                      : "text-gray-800 hover:text-indigo-500"
+                  }`}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}
