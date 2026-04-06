@@ -312,20 +312,20 @@ const ContactUs = () => {
   return (
     <section
       id="contact"
-      className="relative py-20 md:py-24 bg-gradient-to-b from-[#f8faff] via-white to-[#f3f6ff] overflow-hidden"
+      className="relative py-14 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-[#f8faff] via-white to-[#f3f6ff] overflow-hidden"
     >
       {/* Background Blur */}
-      <div className="absolute -top-40 -right-40 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-indigo-200/30 rounded-full blur-3xl" />
-      <div className="absolute -bottom-40 -left-40 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-blue-200/30 rounded-full blur-3xl" />
+      <div className="absolute -top-40 -right-40 w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bg-indigo-200/30 rounded-full blur-3xl" />
+      <div className="absolute -bottom-40 -left-40 w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bg-blue-200/30 rounded-full blur-3xl" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full max-w-7xl xl:max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-12 md:mb-20" data-aos="fade-up">
-          <span className="inline-block text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-100 px-5 py-2 rounded-full mb-5">
+        <div className="text-center mb-8 sm:mb-12 md:mb-20" data-aos="fade-up">
+          <span className="inline-block text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-100 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full mb-3 sm:mb-5">
             Contact Us
           </span>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
             Let's Start a{" "}
             <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text italic text-transparent">
               Conversation
@@ -333,18 +333,18 @@ const ContactUs = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16">
           {/* Contact Info */}
-          <div className="space-y-5 sm:space-y-8" data-aos="fade-right">
+          <div className="space-y-3 sm:space-y-5 md:space-y-8" data-aos="fade-right">
             {[
               {
-                icon: <MdEmail size={22} />,
+                icon: <MdEmail size={20} />,
                 title: "Email",
                 value: "hello@example.com",
                 link: "mailto:hello@example.com",
               },
               {
-                icon: <MdLocationOn size={22} />,
+                icon: <MdLocationOn size={20} />,
                 title: "Address",
                 value:
                   "3A, Bertram St, Esplanade, Dharmatala, Taltala, Kolkata, West Bengal 700087",
@@ -352,7 +352,7 @@ const ContactUs = () => {
                   "https://www.google.com/maps?q=3A%20Bertram%20St%2C%20Esplanade%2C%20Dharmatala%2C%20Taltala%2C%20Kolkata%2C%20West%20Bengal%20700087",
               },
               {
-                icon: <MdPhone size={22} />,
+                icon: <MdPhone size={20} />,
                 title: "Phone",
                 value: "+91 98305 90929",
                 link: "tel:+919830590929",
@@ -363,16 +363,16 @@ const ContactUs = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-4 sm:gap-5 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md border border-gray-100 hover:shadow-2xl z-50 hover:-translate-y-1 transition-all duration-300"
+                className="group flex items-start gap-3 sm:gap-4 md:gap-5 bg-white rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-8 shadow-md border border-gray-100 hover:shadow-2xl z-50 hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="flex-shrink-0 h-11 w-11 sm:h-12 sm:w-12 flex items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-lg group-hover:scale-110 transition">
+                <div className="flex-shrink-0 h-9 w-9 sm:h-11 sm:w-11 md:h-12 md:w-12 flex items-center justify-center rounded-lg sm:rounded-xl md:rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-lg group-hover:scale-110 transition">
                   {item.icon}
                 </div>
                 <div>
-                  <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-1">
+                  <h4 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 mb-0.5 sm:mb-1">
                     {item.title}
                   </h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">{item.value}</p>
+                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{item.value}</p>
                 </div>
               </a>
             ))}
@@ -380,9 +380,9 @@ const ContactUs = () => {
 
           {/* Contact Form */}
           <div data-aos="fade-left">
-            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-6 sm:p-10 border border-gray-100">
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">Send a Message</h3>
-              <p className="text-gray-600 text-sm mb-6 sm:mb-8">
+            <div className="bg-white rounded-xl sm:rounded-2xl md:rounded-3xl shadow-xl p-4 sm:p-6 md:p-10 border border-gray-100">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2">Send a Message</h3>
+              <p className="text-gray-600 text-xs sm:text-sm mb-4 sm:mb-6 md:mb-8">
                 Fill out the form below and we'll respond within 24 hours.
               </p>
 
@@ -571,7 +571,7 @@ const ContactUs = () => {
       {/* ✅ Toast — Bottom Right */}
       {toast.show && (
         <div
-          className={`fixed bottom-6 right-6 px-5 py-3 rounded-xl shadow-2xl z-[9999] border text-sm font-semibold ${
+          className={`fixed bottom-20 sm:bottom-6 right-4 sm:right-6 left-4 sm:left-auto px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl shadow-2xl z-[9999] border text-xs sm:text-sm font-semibold ${
             toast.type === "success"
               ? "bg-green-100 text-green-700 border-green-200"
               : "bg-red-100 text-red-700 border-red-200"

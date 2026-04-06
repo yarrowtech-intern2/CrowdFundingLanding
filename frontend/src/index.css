@@ -1,1 +1,39 @@
 @import "tailwindcss";
+
+/* Global responsive base styles */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+
+/* Prevent horizontal overflow on all devices */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Responsive images by default */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Better touch targets on mobile */
+@media (max-width: 640px) {
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
