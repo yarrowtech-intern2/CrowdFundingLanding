@@ -318,7 +318,7 @@ const ContactUs = () => {
       <div className="absolute -top-40 -right-40 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-indigo-200/30 rounded-full blur-3xl" />
       <div className="absolute -bottom-40 -left-40 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-blue-200/30 rounded-full blur-3xl" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12 md:mb-20" data-aos="fade-up">
           <span className="inline-block text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-100 px-5 py-2 rounded-full mb-5">

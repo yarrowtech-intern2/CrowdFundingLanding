@@ -10,24 +10,24 @@ const FloatingContact = () => {
   const mailLink = `mailto:${email}`;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col gap-3 md:gap-4">
       
       {/* WhatsApp */}
       <a
         href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center justify-center w-14 h-14 rounded-full bg-green-500 text-white shadow-lg hover:scale-110 transition-all duration-300"
+        className="group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-green-500 text-white shadow-lg hover:scale-110 transition-all duration-300"
       >
-        <FaWhatsapp size={28} />
+        <FaWhatsapp className="w-6 h-6 md:w-7 md:h-7" />
       </a>
 
       {/* Email */}
       <a
         href={mailLink}
-        className="group flex items-center justify-center w-14 h-14 rounded-full bg-yellow-400 text-black shadow-lg hover:scale-110 transition-all duration-300"
+        className="group flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-yellow-400 text-black shadow-lg hover:scale-110 transition-all duration-300"
       >
-        <FiMail size={24} />
+        <FiMail className="w-5 h-5 md:w-6 md:h-6" />
       </a>
 
     </div>

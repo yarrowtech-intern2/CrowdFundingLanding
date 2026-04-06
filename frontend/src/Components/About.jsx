@@ -1,5 +1,6 @@
 import React from "react";
 import aboutImg from "../assets/about.png";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
 const AboutUs = () => {
@@ -53,4 +54,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutUs;

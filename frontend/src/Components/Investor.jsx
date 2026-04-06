@@ -1,5 +1,6 @@
 import React from "react";
 import investorImg from "../assets/Investor.png";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { BarChart3, TrendingUp, ArrowRightLeft } from "lucide-react";
 
@@ -104,4 +105,4 @@ const BrowseInvestors = () => {
 };
 
 export default BrowseInvestors;
-
+

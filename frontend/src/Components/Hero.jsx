@@ -1,4 +1,5 @@
 import React from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import handshakeImg from "../assets/handshake.png";
@@ -24,18 +25,6 @@ const Hero = () => {
     });
   };
 
-  const slideInVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.9,
-        ease: [0.23, 1, 0.320, 1],
-      },
-    },
-  };
-
   const buttonVariants = {
     rest: { scale: 1 },
     hover: {
@@ -43,19 +32,6 @@ const Hero = () => {
       transition: { duration: 0.25 },
     },
     tap: { scale: 0.98 },
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 1.2,
-        delay: 0.4,
-        ease: [0.23, 1, 0.320, 1],
-      },
-    },
   };
 
   const containerVariants = {
@@ -132,12 +108,12 @@ const Hero = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-b from-transparent via-white/50 to-white" />
       </div>
 
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-28 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 items-center">
+      <div className="w-full max-w-7xl xl:max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 xl:pt-36 pb-14 sm:pb-16 lg:pb-20 xl:pb-24 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-20 items-center">
           
           {/* Left Column: Text Content (Slides from Left) */}
           <motion.div 
-            className="text-left order-2 lg:order-1 lg:pr-8 xl:pr-12"
+            className="text-left lg:pr-8 xl:pr-12"
             initial={{ opacity: 0, x: -70 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -167,7 +143,7 @@ const Hero = () => {
               We transform extraordinary sparks into market-defining landmarks.
             </p>
 
-            <div className="flex flex-col xs:flex-row sm:flex-row gap-3 sm:gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <motion.button
                 onClick={() => scrollToSection("fundraise")}
                 className="w-full sm:w-auto px-7 sm:px-9 py-3.5 sm:py-4 bg-indigo-600 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform active:scale-95 hover:bg-indigo-700 text-sm sm:text-base"
@@ -194,7 +170,7 @@ const Hero = () => {
 
           {/* Right Column: Hero Image (Slides from Right) */}
           <motion.div 
-            className="relative order-1 lg:order-2"
+            className="relative"
             initial={{ opacity: 0, x: 70 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}

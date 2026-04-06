@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const HEADER_HEIGHT = 100;
@@ -8,13 +8,16 @@ const Header = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
 
-  const navItems = [
-    { name: "Home", id: "home" },
-    { name: "Investors", id: "investors" },
-    { name: "About", id: "about" },
-    { name: "Security", id: "security" },
-    { name: "Contact", id: "contact" },
-  ];
+  const navItems = useMemo(
+    () => [
+      { name: "Home", id: "home" },
+      { name: "Investors", id: "investors" },
+      { name: "About", id: "about" },
+      { name: "Security", id: "security" },
+      { name: "Contact", id: "contact" },
+    ],
+    []
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,7 +44,7 @@ const Header = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navItems]);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -60,7 +63,7 @@ const Header = () => {
     <header className="fixed top-4 md:top-6 left-0 w-full z-50 px-4 sm:px-6 lg:px-8 pointer-events-none">
 
       {/* Grid Layout: 1fr | auto | 1fr -> Guarantees mathematically perfect center! */}
-      <div className="max-w-7xl mx-auto grid grid-cols-[1fr_auto_1fr] items-center pointer-events-auto relative">
+      <div className="max-w-6xl mx-auto grid grid-cols-[1fr_auto_1fr] items-center pointer-events-auto relative">
 
         {/* LEFT — Logo */}
         <div
@@ -76,9 +79,9 @@ const Header = () => {
         </div>
 
         {/* CENTER — Desktop Navigation pill (always centered) */}
-        <div className="hidden md:flex justify-self-center">
+        <div className="justify-self-center">
           <div
-            className={`flex items-center gap-5 lg:gap-8 px-5 lg:px-8 py-3 rounded-full transition-all duration-300 ${
+            className={`hidden lg:flex items-center gap-5 xl:gap-8 px-5 xl:px-8 py-3 rounded-full transition-all duration-300 ${
               scrolled
                 ? "bg-white/80 backdrop-blur-xl shadow-lg"
                 : "bg-white/40 backdrop-blur-xl"
@@ -101,9 +104,9 @@ const Header = () => {
         </div>
 
         {/* RIGHT — Mobile hamburger */}
-        <div className="flex justify-end justify-self-end">
+        <div className="flex justify-end justify-self-end w-full">
           <button
-            className="md:hidden text-black text-xl p-2"
+            className="lg:hidden text-black text-xl p-2"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <FaTimes /> : <FaBars />}
@@ -114,7 +117,7 @@ const Header = () => {
 
       {/* Mobile Menu Dropdown */}
       {menuOpen && (
-        <div className="mt-3 w-full max-w-7xl mx-auto md:hidden">
+        <div className="mt-3 w-full max-w-7xl mx-auto lg:hidden pointer-events-auto">
           <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100">
             <div className="flex flex-col px-5 py-4">
               {navItems.map((item) => (

@@ -1,4 +1,5 @@
 import React from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { MdLock, MdGavel, MdVerified } from "react-icons/md";
 
@@ -33,7 +34,7 @@ const SecurityCompliance = () => {
       id="security"
       className="w-full bg-[#f6f7fb] py-20 md:py-28 overflow-hidden"
     >
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* HEADER */}
         <motion.div

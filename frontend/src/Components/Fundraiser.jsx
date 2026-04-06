@@ -1,5 +1,6 @@
 import React from "react";
 import fundraiserImg from "../assets/Fundraiser.png";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
 const FundraiserSection = () => {
@@ -37,12 +38,12 @@ const FundraiserSection = () => {
             Fundraising Platform
           </span>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1e2b4f] leading-[1.1] mb-6">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-[#1e2b4f] leading-[1.1] mb-6">
             Ignite Your Ambition. <br />
             <span className="text-[#2e66ff] italic">Architect the Future</span>
           </h1>
 
-          <p className="text-[15px] md:text-lg text-gray-600 leading-relaxed mb-6 max-w-xl">
+          <p className="text-[15px] md:text-lg text-gray-600 leading-relaxed mb-6 max-w-lg lg:max-w-xl xl:max-w-2xl">
             Launch your vision with <strong>0% platform fees</strong>, global reach, and a direct line to elite capital. We provide the tools and exposure you need to transition from an idea to a global market leader with unshakeable speed.
           </p>
         </motion.div>
@@ -52,4 +53,4 @@ const FundraiserSection = () => {
   );
 };
 
-export default FundraiserSection;
+export default FundraiserSection;
