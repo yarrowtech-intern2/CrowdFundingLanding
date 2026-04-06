@@ -167,9 +167,9 @@ const Hero = () => {
               delay: 0.1,
             }}
           >
-            <div className="relative max-w-sm sm:max-w-md lg:max-w-full xl:max-w-2xl 2xl:max-w-3xl mx-auto">
+            <div className="relative max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
               <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 blur-3xl rounded-full" />
-              <div className="relative p-2 sm:p-3 bg-white/40 backdrop-blur-md rounded-3xl sm:rounded-[3rem] border border-white/60 shadow-2xl group transition-all duration-700 hover:scale-[1.02] overflow-hidden">
+              <div className="relative p-2 sm:p-3 bg-white/40 backdrop-blur-md rounded-3xl border border-white/60 shadow-2xl group transition-all duration-700 hover:scale-[1.02] overflow-hidden">
                 <img
                   src={handshakeImg}
                   alt="Business Partnership"

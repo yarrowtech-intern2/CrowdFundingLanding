@@ -312,7 +312,7 @@ const ContactUs = () => {
   return (
     <section
       id="contact"
-      className="relative py-16 sm:py-20 md:py-28 lg:py-36 2xl:py-48 bg-gradient-to-b from-[#f8faff] via-white to-[#f3f6ff] overflow-hidden"
+      className="relative py-[var(--size-fluid-section-py)] bg-gradient-to-b from-[#f8faff] via-white to-[#f3f6ff] overflow-hidden"
     >
       {/* Background Blur */}
       <div className="hidden md:block absolute -top-40 -right-40 w-[200px] sm:w-[400px] lg:w-[600px] h-[200px] sm:h-[400px] lg:h-[600px] bg-indigo-200/30 rounded-full blur-[120px]" />

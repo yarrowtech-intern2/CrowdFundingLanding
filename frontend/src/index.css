@@ -1,19 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  /* Dynamic viewports */
   --breakpoint-xs: 480px;
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
-  --breakpoint-2xl: 1536px;
+  --breakpoint-2xl: 1440px;
   --breakpoint-3xl: 1920px;
 
-  /* Brand Colors */
+  /* Optimized Spacing System */
+  --fluid-gap: clamp(1rem, 3.5vw, 3.5rem);
+  --fluid-py: clamp(3.5rem, 9vh, 10rem);
+  --fluid-px: clamp(1rem, 5vw, 6rem);
+  --max-content-width: 86rem; /* 1376px - Unified center line */
+  
   --color-primary: #2e66ff;
-  --color-primary-dark: #1e2b4f;
-  --color-accent: #4f46e5;
+  --color-primary-dark: #0f172a;
   --color-surface: #f6f7fb;
 }
 
@@ -22,16 +25,11 @@
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    /* Base fluid typography scale */
     font-size: 16px;
+    overflow-x: hidden;
   }
 
-  @media (min-width: 1920px) {
-    html {
-      font-size: 18px; /* Slightly larger base for ultrawide */
-    }
-  }
+  @media (min-width: 1920px) { html { font-size: 17px; } }
 
   body {
     margin: 0;
@@ -39,57 +37,58 @@
     overflow-x: hidden;
     min-height: 100dvh;
     background-color: white;
-    color: #1e2b4f;
+    color: var(--color-primary-dark);
+    line-height: 1.5;
+    box-sizing: border-box;
+  }
+
+  *, *::before, *::after {
+    box-sizing: inherit;
   }
 }
 
 @layer components {
-  /* Centralized Section Container - Production Standard */
-  /* Tightened for better cohesion on wide screens */
+  /* THE CENTERED GRID ENGINE */
   .section-container {
-    width: 100%;
-    max-width: 80rem; /* 1280px - Ideal for readability */
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    width: 100% !important;
+    max-width: var(--max-content-width) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: var(--fluid-px) !important;
+    padding-right: var(--fluid-px) !important;
   }
 
-  @media (min-width: 640px) { .section-container { padding-left: 2rem; padding-right: 2rem; } }
-  @media (min-width: 1024px) { .section-container { padding-left: 3rem; padding-right: 3rem; } }
-  @media (min-width: 1536px) { 
-    .section-container { 
-      max-width: 90rem; /* 1440px - Maximum width for ultra-wide displays */
-      padding-left: 4rem; 
-      padding-right: 4rem; 
-    } 
+  @media (max-width: 1376px) {
+    .section-container {
+      max-width: 100% !important;
+    }
   }
 
-  /* Refined Fluid Typography - Slightly smaller caps for better balance */
+  /* BALANCED FLUID TYPOGRAPHY: Elegant, modern sizes */
   .heading-hero {
-    font-size: clamp(2.25rem, 4.5vw + 0.75rem, 5.5rem);
-    line-height: 1.05;
+    font-size: clamp(2.25rem, 4.5vw + 1rem, 4.25rem);
+    line-height: 1.1;
+    font-weight: 850;
+    letter-spacing: -0.04em;
+  }
+
+  .heading-section {
+    font-size: clamp(1.85rem, 3.5vw + 0.5rem, 3.25rem);
+    line-height: 1.15;
     font-weight: 800;
     letter-spacing: -0.03em;
   }
 
-  .heading-section {
-    font-size: clamp(1.875rem, 3.5vw + 0.75rem, 4rem);
-    line-height: 1.1;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-
   .text-body {
-    font-size: clamp(1rem, 0.4vw + 0.85rem, 1.15rem);
-    line-height: 1.6;
+    font-size: clamp(0.95rem, 0.35vw + 0.85rem, 1.15rem);
+    line-height: 1.65;
+    font-weight: 500;
   }
 }
 
-/* Animations */
 @keyframes float {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
   100% { transform: translateY(0px); }
 }
 
