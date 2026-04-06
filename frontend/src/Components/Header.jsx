@@ -60,10 +60,10 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-2 sm:top-4 md:top-6 left-0 w-full z-50 px-3 sm:px-6 lg:px-8 pointer-events-none transition-all duration-300">
+    <header className="fixed top-2 sm:top-4 md:top-6 left-0 w-full z-50 pointer-events-none transition-all duration-300">
 
       {/* Grid Layout: 1fr | auto | 1fr -> Guarantees mathematically perfect center! */}
-      <div className="section-container max-w-[75rem] grid grid-cols-[1fr_auto_1fr] items-center pointer-events-auto relative">
+      <div className="section-container grid grid-cols-[1fr_auto_1fr] items-center pointer-events-auto relative">
 
         {/* LEFT — Logo */}
         <div
