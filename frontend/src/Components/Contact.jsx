@@ -338,7 +338,7 @@ const ContactUs = () => {
         </div>
 
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 2xl:gap-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 xl:gap-24 2xl:gap-28">
           {/* Contact Info */}
           <div className="space-y-6 sm:space-y-8 md:space-y-12" data-aos="fade-right">
             {[

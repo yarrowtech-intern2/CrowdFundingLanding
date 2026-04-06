@@ -9,7 +9,7 @@ const FundraiserSection = () => {
       id="fundraise"
       className="w-full bg-gradient-to-b from-[#f8f9ff] via-[#f3f5ff] to-[#eef2ff] flex items-center overflow-hidden py-16 sm:py-20 md:py-28 lg:py-36 2xl:py-48"
     >
-      <div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 2xl:gap-32 items-center">
+      <div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 xl:gap-24 items-center">
         {/* LEFT IMAGE */}
         <motion.div
           className="relative group max-w-sm sm:max-w-md lg:max-w-full xl:max-w-2xl 2xl:max-w-3xl mx-auto w-full"
