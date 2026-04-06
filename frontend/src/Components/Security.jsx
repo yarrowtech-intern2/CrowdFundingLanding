@@ -32,29 +32,33 @@ const SecurityCompliance = () => {
   return (
     <section
       id="security"
-      className="w-full bg-[#f6f7fb] py-16 sm:py-20 md:py-28 overflow-hidden"
+      className="w-full bg-surface py-16 sm:py-20 md:py-28 lg:py-32 2xl:py-40 overflow-hidden"
     >
-      <div className="w-full max-w-7xl xl:max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="section-container">
         {/* HEADER */}
         <motion.div
-          className="text-center mb-8 sm:mb-12 md:mb-20"
+          className="text-center mb-8 sm:mb-12 md:mb-20 2xl:mb-28"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
         >
-          <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#2e66ff] bg-[#eef2ff] px-4 py-1.5 rounded-full mb-3 sm:mb-4">
+          <span className="inline-block text-xs md:text-sm font-bold uppercase tracking-widest text-primary bg-indigo-50 px-4 py-1.5 md:py-2 rounded-full mb-3 sm:mb-4">
             Trust &amp; Safety
           </span>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#1e2b4f] mb-3 sm:mb-5">
+          <h2 className="heading-section text-primary-dark mb-3 sm:mb-5">
             Security &amp;{" "}
-            <span className="text-[#2e66ff] italic">Compliance</span>
+            <span className="text-primary italic">Compliance</span>
           </h2>
+          <p className="max-w-2xl mx-auto text-body text-gray-500 font-medium">
+            We prioritize your protection with industry-leading security protocols and 
+            unwavering adherence to global regulatory standards.
+          </p>
         </motion.div>
 
         {/* CARDS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 2xl:gap-14">
           {items.map((item, index) => (
             <motion.div
               key={item.id}
@@ -70,21 +74,23 @@ const SecurityCompliance = () => {
                 delay: index * 0.1,
                 ease: [0.23, 1, 0.32, 1],
               }}
-              className={`bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col group ${
+              className={`bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 2xl:p-12 shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col group ${
                 index === 2 ? "sm:col-span-2 lg:col-span-1" : ""
               }`}
             >
-              <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl sm:rounded-2xl bg-[#2e66ff] flex items-center justify-center shadow-lg group-hover:bg-[#1e2b4f] transition-colors duration-300 mb-4 sm:mb-5 md:mb-6">
-                {item.icon}
+              <div className="h-12 w-12 sm:h-14 sm:w-14 2xl:h-16 2xl:w-16 rounded-xl sm:rounded-2xl bg-primary flex items-center justify-center shadow-lg group-hover:bg-primary-dark transition-colors duration-300 mb-5 sm:mb-6 md:mb-8">
+                <div className="transform group-hover:scale-110 transition-transform duration-300">
+                  {item.icon}
+                </div>
               </div>
 
-              <h3 className="text-sm sm:text-base md:text-lg font-semibold text-[#1e2b4f] mb-2 sm:mb-3 md:mb-4">
+              <h3 className="text-lg sm:text-xl md:text-2xl 2xl:text-3xl font-bold text-primary-dark mb-3 sm:mb-4">
                 {item.title}
               </h3>
 
-              <div className="border-t border-gray-100 mb-3 sm:mb-4 md:mb-5" />
+              <div className="w-16 h-1 bg-indigo-50 mb-5 sm:mb-6 group-hover:w-full transition-all duration-500" />
 
-              <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed flex-1">
+              <p className="text-gray-600 text-body leading-relaxed flex-1 font-medium">
                 {item.desc}
               </p>
             </motion.div>
@@ -92,6 +98,7 @@ const SecurityCompliance = () => {
         </div>
       </div>
     </section>
+
   );
 };
 

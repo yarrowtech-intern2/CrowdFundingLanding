@@ -22,15 +22,15 @@ const Footer = () => {
       {/* Gradient Top Border */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600" />
 
-      <div className="w-full max-w-7xl xl:max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="section-container">
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12 mb-10 sm:mb-12 md:mb-16">
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4 md:mb-6">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4 md:mb-6">
               M8-BID
             </h3>
-            <p className="text-gray-400 leading-relaxed text-xs sm:text-sm md:text-base">
+            <p className="text-gray-400 leading-relaxed text-sm md:text-base">
               Empowering investors and startups through secure, transparent, and
               compliant crowdfunding solutions.
             </p>
@@ -115,6 +115,7 @@ const Footer = () => {
           <p>Built with security &amp; trust in mind.</p>
         </div>
       </div>
+
     </footer>
   );
 };

@@ -312,39 +312,44 @@ const ContactUs = () => {
   return (
     <section
       id="contact"
-      className="relative py-14 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-[#f8faff] via-white to-[#f3f6ff] overflow-hidden"
+      className="relative py-16 sm:py-20 md:py-28 lg:py-36 2xl:py-48 bg-gradient-to-b from-[#f8faff] via-white to-[#f3f6ff] overflow-hidden"
     >
       {/* Background Blur */}
-      <div className="absolute -top-40 -right-40 w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bg-indigo-200/30 rounded-full blur-3xl" />
-      <div className="absolute -bottom-40 -left-40 w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bg-blue-200/30 rounded-full blur-3xl" />
+      <div className="hidden md:block absolute -top-40 -right-40 w-[200px] sm:w-[400px] lg:w-[600px] h-[200px] sm:h-[400px] lg:h-[600px] bg-indigo-200/30 rounded-full blur-[120px]" />
+      <div className="hidden md:block absolute -bottom-40 -left-40 w-[200px] sm:w-[400px] lg:w-[600px] h-[200px] sm:h-[400px] lg:h-[600px] bg-blue-200/30 rounded-full blur-[120px]" />
 
-      <div className="w-full max-w-7xl xl:max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="section-container relative z-10">
         {/* Header */}
-        <div className="text-center mb-8 sm:mb-12 md:mb-20" data-aos="fade-up">
-          <span className="inline-block text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-100 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full mb-3 sm:mb-5">
-            Contact Us
+        <div className="text-center mb-12 sm:mb-16 md:mb-24 2xl:mb-32" data-aos="fade-up">
+          <span className="inline-block text-xs md:text-sm font-bold uppercase tracking-widest text-primary bg-indigo-50 px-5 py-2 rounded-full mb-4 sm:mb-6">
+            Get In Touch
           </span>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+          <h2 className="heading-section text-gray-900 mb-6 sm:mb-8">
             Let's Start a{" "}
-            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text italic text-transparent">
+            <span className="text-primary italic">
               Conversation
             </span>
           </h2>
+          <p className="max-w-2xl mx-auto text-body text-gray-500 font-medium leading-relaxed">
+            Ready to transform your vision into reality? Our team is here to 
+            support your journey towards global impact.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16">
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 2xl:gap-32">
           {/* Contact Info */}
-          <div className="space-y-3 sm:space-y-5 md:space-y-8" data-aos="fade-right">
+          <div className="space-y-6 sm:space-y-8 md:space-y-12" data-aos="fade-right">
             {[
               {
-                icon: <MdEmail size={20} />,
+                icon: <MdEmail size={24} />,
                 title: "Email",
                 value: "hello@example.com",
                 link: "mailto:hello@example.com",
               },
               {
-                icon: <MdLocationOn size={20} />,
+                icon: <MdLocationOn size={24} />,
                 title: "Address",
                 value:
                   "3A, Bertram St, Esplanade, Dharmatala, Taltala, Kolkata, West Bengal 700087",
@@ -352,7 +357,7 @@ const ContactUs = () => {
                   "https://www.google.com/maps?q=3A%20Bertram%20St%2C%20Esplanade%2C%20Dharmatala%2C%20Taltala%2C%20Kolkata%2C%20West%20Bengal%20700087",
               },
               {
-                icon: <MdPhone size={20} />,
+                icon: <MdPhone size={24} />,
                 title: "Phone",
                 value: "+91 98305 90929",
                 link: "tel:+919830590929",
@@ -363,16 +368,18 @@ const ContactUs = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-3 sm:gap-4 md:gap-5 bg-white rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-8 shadow-md border border-gray-100 hover:shadow-2xl z-50 hover:-translate-y-1 transition-all duration-300"
+                className="group flex items-center gap-6 sm:gap-8 bg-white rounded-3xl p-6 sm:p-8 md:p-10 2xl:p-14 shadow-lg border border-gray-100 hover:shadow-2xl z-50 hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="flex-shrink-0 h-9 w-9 sm:h-11 sm:w-11 md:h-12 md:w-12 flex items-center justify-center rounded-lg sm:rounded-xl md:rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-lg group-hover:scale-110 transition">
+                <div className="flex-shrink-0 h-14 w-14 sm:h-16 sm:w-16 2xl:h-20 2xl:w-20 flex items-center justify-center rounded-2xl 2xl:rounded-3xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-xl group-hover:scale-110 transition-transform duration-300">
                   {item.icon}
                 </div>
                 <div>
-                  <h4 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 mb-0.5 sm:mb-1">
+                  <h4 className="text-lg sm:text-xl md:text-2xl 2xl:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">
                     {item.title}
                   </h4>
-                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{item.value}</p>
+                  <p className="text-gray-600 text-sm sm:text-base md:text-lg 2xl:text-xl leading-relaxed font-medium">
+                    {item.value}
+                  </p>
                 </div>
               </a>
             ))}
@@ -380,17 +387,17 @@ const ContactUs = () => {
 
           {/* Contact Form */}
           <div data-aos="fade-left">
-            <div className="bg-white rounded-xl sm:rounded-2xl md:rounded-3xl shadow-xl p-4 sm:p-6 md:p-10 border border-gray-100">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-1 sm:mb-2">Send a Message</h3>
-              <p className="text-gray-600 text-xs sm:text-sm mb-4 sm:mb-6 md:mb-8">
+            <div className="bg-white rounded-[2.5rem] shadow-2xl p-6 sm:p-10 md:p-14 2xl:p-20 border border-gray-100">
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">Send a Message</h3>
+              <p className="text-gray-600 text-sm sm:text-base font-medium mb-8 sm:mb-10 lg:mb-12">
                 Fill out the form below and we'll respond within 24 hours.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6" autoComplete="on">
+              <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8" autoComplete="on">
                 {/* Row 1 */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-2">
+                    <label className="block text-sm font-bold text-gray-800 mb-3">
                       Full Name <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
@@ -401,19 +408,19 @@ const ContactUs = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder="Enter your name"
-                      className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 focus:outline-none font-medium text-sm ${
+                      className={`w-full px-5 py-4 rounded-2xl border-2 transition-all duration-200 focus:outline-none font-bold text-base ${
                         errors.name && touched.name
                           ? "border-red-500 bg-red-50/50"
-                          : "border-gray-200 bg-gray-50 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100"
+                          : "border-gray-200 bg-gray-50 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-100"
                       }`}
                     />
                     {errors.name && touched.name && (
-                      <p className="text-red-600 text-xs mt-2 font-medium">{errors.name}</p>
+                      <p className="text-red-600 text-xs mt-3 font-bold">{errors.name}</p>
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-2">
+                    <label className="block text-sm font-bold text-gray-800 mb-3">
                       Email Address <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
@@ -423,23 +430,23 @@ const ContactUs = () => {
                       value={form.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      placeholder="Enter your mail"
-                      className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 focus:outline-none font-medium text-sm ${
+                      placeholder="Enter your email"
+                      className={`w-full px-5 py-4 rounded-2xl border-2 transition-all duration-200 focus:outline-none font-bold text-base ${
                         errors.email && touched.email
                           ? "border-red-500 bg-red-50/50"
-                          : "border-gray-200 bg-gray-50 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100"
+                          : "border-gray-200 bg-gray-50 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-100"
                       }`}
                     />
                     {errors.email && touched.email && (
-                      <p className="text-red-600 text-xs mt-2 font-medium">{errors.email}</p>
+                      <p className="text-red-600 text-xs mt-3 font-bold">{errors.email}</p>
                     )}
                   </div>
                 </div>
 
                 {/* Row 2 */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-2">
+                    <label className="block text-sm font-bold text-gray-800 mb-3">
                       Phone Number <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
@@ -449,21 +456,21 @@ const ContactUs = () => {
                       value={form.mobile}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      placeholder="Enter your mobile number"
-                      className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 focus:outline-none font-medium text-sm ${
+                      placeholder="+91 00000 00000"
+                      className={`w-full px-5 py-4 rounded-2xl border-2 transition-all duration-200 focus:outline-none font-bold text-base ${
                         errors.mobile && touched.mobile
                           ? "border-red-500 bg-red-50/50"
-                          : "border-gray-200 bg-gray-50 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100"
+                          : "border-gray-200 bg-gray-50 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-100"
                       }`}
                     />
                     {errors.mobile && touched.mobile && (
-                      <p className="text-red-600 text-xs mt-2 font-medium">{errors.mobile}</p>
+                      <p className="text-red-600 text-xs mt-3 font-bold">{errors.mobile}</p>
                     )}
                   </div>
 
                   {/* ✅ Address with suggestions */}
                   <div className="relative" ref={dropdownRef}>
-                    <label className="block text-sm font-semibold text-gray-800 mb-2">
+                    <label className="block text-sm font-bold text-gray-800 mb-3">
                       Address <span className="text-red-500 ml-1">*</span>
                     </label>
 
@@ -477,11 +484,11 @@ const ContactUs = () => {
                       onFocus={() => {
                         if (addrSuggestions.length) setAddrOpen(true);
                       }}
-                      placeholder="Type your address/city"
-                      className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 focus:outline-none font-medium text-sm ${
+                      placeholder="Type your address..."
+                      className={`w-full px-5 py-4 rounded-2xl border-2 transition-all duration-200 focus:outline-none font-bold text-base ${
                         errors.address && touched.address
                           ? "border-red-500 bg-red-50/50"
-                          : "border-gray-200 bg-gray-50 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100"
+                          : "border-gray-200 bg-gray-50 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-100"
                       }`}
                     />
 
@@ -531,32 +538,32 @@ const ContactUs = () => {
 
                 {/* Message */}
                 <div>
-                  <div className="flex justify-between items-center mb-2">
-                    <label className="block text-sm font-semibold text-gray-800">
+                  <div className="flex justify-between items-center mb-3">
+                    <label className="block text-sm font-bold text-gray-800">
                       Message <span className="text-gray-400 font-normal text-xs ml-2">(Optional)</span>
                     </label>
-                    <span className="text-xs text-gray-500">{form.message.length}/500</span>
+                    <span className="text-xs text-gray-500 font-bold">{form.message.length}/500</span>
                   </div>
                   <textarea
                     name="message"
-                    rows="4"
+                    rows="5"
                     value={form.message}
                     onChange={handleChange}
                     maxLength="500"
-                    placeholder="Tell us more about your inquiry..."
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-gray-50 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 focus:outline-none resize-none font-medium text-sm transition-all duration-200"
+                    placeholder="How can we help you?"
+                    className="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 bg-gray-50 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-100 focus:outline-none resize-none font-bold text-base transition-all duration-200"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full py-3.5 mt-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl z-50 hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed text-base"
+                  className="w-full py-5 mt-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-extrabold rounded-2xl shadow-xl hover:shadow-2xl z-50 hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed text-lg active:scale-[0.98]"
                 >
                   {isLoading ? (
-                    <span className="flex items-center justify-center gap-2">
-                      <span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" />
-                      Sending...
+                    <span className="flex items-center justify-center gap-3">
+                      <span className="animate-spin h-5 w-5 border-3 border-white border-t-transparent rounded-full" />
+                      Sending Message...
                     </span>
                   ) : (
                     "Send Message"
