@@ -6,9 +6,9 @@ const FundraiserSection = () => {
   return (
     <section
       id="fundraise"
-      className="w-full min-h-screen bg-gradient-to-b from-[#f8f9ff] via-[#f3f5ff] to-[#eef2ff] flex items-center overflow-hidden"
+      className="w-full min-h-screen bg-gradient-to-b from-[#f8f9ff] via-[#f3f5ff] to-[#eef2ff] flex items-center overflow-hidden py-20"
     >
-      <div className="mx-auto max-w-6xl px-4 md:px-8 grid md:grid-cols-2 gap-16 items-center w-full">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
 
         {/* LEFT IMAGE (Slides from Left) */}
         <motion.div 

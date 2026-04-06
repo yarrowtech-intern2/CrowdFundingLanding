@@ -132,12 +132,12 @@ const Hero = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-b from-transparent via-white/50 to-white" />
       </div>
 
-      <div className="w-full max-w-7xl mx-auto px-6 py-20 lg:py-32 relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
           {/* Left Column: Text Content (Slides from Left) */}
           <motion.div 
-            className="text-left order-2 md:order-1"
+            className="text-left order-2 lg:order-1"
             initial={{ opacity: 0, x: -70 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -194,7 +194,7 @@ const Hero = () => {
 
           {/* Right Column: Hero Image (Slides from Right) */}
           <motion.div 
-            className="relative order-1 md:order-2"
+            className="relative order-1 lg:order-2"
             initial={{ opacity: 0, x: 70 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -222,7 +222,7 @@ const Hero = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
             
             {/* Step 1: Left to Right */}
             <motion.div 
@@ -239,7 +239,7 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            {/* Step 2: Center (Slightly different or vertical slide if preferred, but following the 'alternating side' flow) */}
+            {/* Step 2: Center */}
             <motion.div 
               variants={itemVariants} 
               className="group flex items-start gap-5 p-6 rounded-3xl hover:bg-white hover:shadow-xl hover:shadow-purple-500/5 transition-all duration-500"
@@ -257,7 +257,7 @@ const Hero = () => {
             {/* Step 3: Right to Left */}
             <motion.div 
               variants={itemSlideRight}
-              className="group flex items-start gap-5 p-6 rounded-3xl hover:bg-white hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-500"
+              className="group flex items-start gap-5 p-6 rounded-3xl hover:bg-white hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-500 sm:col-span-2 lg:col-span-1"
             >
               <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-indigo-50 flex items-center justify-center group-hover:bg-indigo-600 transition-colors duration-500">
                 <ArrowRightLeft className="w-7 h-7 text-indigo-600 group-hover:text-white transition-colors duration-500" />

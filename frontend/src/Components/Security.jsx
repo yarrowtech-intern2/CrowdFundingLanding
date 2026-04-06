@@ -33,7 +33,7 @@ const SecurityCompliance = () => {
       id="security"
       className="w-full bg-[#f6f7fb] py-20 md:py-28 overflow-hidden"
     >
-      <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* HEADER (Slides from Bottom) */}
         <motion.div 
@@ -56,7 +56,7 @@ const SecurityCompliance = () => {
         </motion.div>
 
         {/* CARDS (Animated from sides and bottom) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {items.map((item, index) => (
             <motion.div
               key={item.id}
@@ -64,7 +64,7 @@ const SecurityCompliance = () => {
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: false, amount: 0.3 }}
               transition={{ duration: 0.7, delay: index * 0.1, ease: [0.23, 1, 0.32, 1] }}
-              className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col group"
+              className={`bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col group ${index === 2 ? "sm:col-span-2 lg:col-span-1" : ""}`}
             >
               {/* Icon */}
               <div className="h-12 w-12 rounded-2xl bg-[#2e66ff] flex items-center justify-center shadow-lg group-hover:bg-[#1e2b4f] transition-colors duration-300 mb-6">

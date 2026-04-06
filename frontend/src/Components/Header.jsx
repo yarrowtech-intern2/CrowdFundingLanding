@@ -58,9 +58,9 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-8 left-0 w-full z-50">
+    <header className="fixed top-4 md:top-8 left-0 w-full z-50">
 
-      <div className="relative max-w-7xl mx-auto flex items-center justify-between px-8">
+      <div className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
 
         {/* Logo */}
         <div
