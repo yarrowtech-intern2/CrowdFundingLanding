@@ -22,14 +22,14 @@ const BrowseInvestors = () => {
             Investor Network
           </span>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1e2b4f] leading-[1.1] mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-[#1e2b4f] leading-[1.1] mb-6">
             Fuel the Revolution. <br />
             <span className="text-[#2e66ff] italic">
               Invest in Global Greatness
             </span>
           </h2>
 
-          <p className="text-[15px] md:text-lg text-gray-600 leading-relaxed mb-8 sm:mb-10 max-w-xl">
+          <p className="text-[15px] md:text-lg text-gray-600 leading-relaxed mb-8 sm:mb-10 max-w-lg lg:max-w-xl xl:max-w-2xl">
             Scale your wealth by backing the next generation of global giants. Access high-growth, vetted startups with analyzed fundamentals and join an elite tier of strategic capital partners.
           </p>
 

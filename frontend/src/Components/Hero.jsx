@@ -133,11 +133,11 @@ const Hero = () => {
       </div>
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-28 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 items-center">
           
           {/* Left Column: Text Content (Slides from Left) */}
           <motion.div 
-            className="text-left order-2 lg:order-1"
+            className="text-left order-2 lg:order-1 lg:pr-8 xl:pr-12"
             initial={{ opacity: 0, x: -70 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -162,7 +162,7 @@ const Hero = () => {
               into a Legacy.
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-500 max-w-md leading-relaxed mb-8 font-medium">
+            <p className="text-base sm:text-lg text-slate-500 max-w-lg lg:max-w-xl xl:max-w-2xl leading-relaxed mb-8 font-medium">
               The definitive arena where radical vision meets elite capital. 
               We transform extraordinary sparks into market-defining landmarks.
             </p>

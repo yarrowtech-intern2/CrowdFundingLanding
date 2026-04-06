@@ -57,15 +57,15 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-4 md:top-6 left-0 w-full z-50 px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-4 md:top-6 left-0 w-full z-50 px-4 sm:px-6 lg:px-8 pointer-events-none">
 
-      {/* flex layout with equal flex-1 sides keeps center nav perfectly centered */}
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      {/* Grid Layout: 1fr | auto | 1fr -> Guarantees mathematically perfect center! */}
+      <div className="max-w-7xl mx-auto grid grid-cols-[1fr_auto_1fr] items-center pointer-events-auto relative">
 
         {/* LEFT — Logo */}
         <div
           onClick={() => scrollToSection("home")}
-          className="cursor-pointer flex items-center gap-2 sm:gap-3 flex-1"
+          className="cursor-pointer flex items-center gap-2 sm:gap-3 justify-self-start"
         >
           <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-indigo-600 flex items-center justify-center shadow-md flex-shrink-0">
             <span className="text-white font-bold text-sm">M8</span>
@@ -76,7 +76,7 @@ const Header = () => {
         </div>
 
         {/* CENTER — Desktop Navigation pill (always centered) */}
-        <div className="hidden md:flex flex-shrink-0">
+        <div className="hidden md:flex justify-self-center">
           <div
             className={`flex items-center gap-5 lg:gap-8 px-5 lg:px-8 py-3 rounded-full transition-all duration-300 ${
               scrolled
@@ -101,7 +101,7 @@ const Header = () => {
         </div>
 
         {/* RIGHT — Mobile hamburger */}
-        <div className="flex-1 flex justify-end">
+        <div className="flex justify-end justify-self-end">
           <button
             className="md:hidden text-black text-xl p-2"
             onClick={() => setMenuOpen(!menuOpen)}

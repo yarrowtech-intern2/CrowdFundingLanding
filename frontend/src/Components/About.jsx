@@ -21,12 +21,12 @@ const AboutUs = () => {
             About Us
           </span>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#1e2b4f] leading-[1.1] mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-[#1e2b4f] leading-[1.1] mb-6">
             Architecting a World Where <br />
             <span className="text-[#2e66ff] italic">Innovation Has No Limits</span>
           </h2>
 
-          <p className="text-[15px] md:text-lg text-slate-500 leading-relaxed mb-6 max-w-xl font-medium">
+          <p className="text-[15px] md:text-lg text-slate-500 leading-relaxed mb-6 max-w-lg lg:max-w-xl xl:max-w-2xl font-medium">
             Dismantling the walls between vision and capital. We provide the engine 
             for human progress, fueling the minds that define our future.
           </p>
