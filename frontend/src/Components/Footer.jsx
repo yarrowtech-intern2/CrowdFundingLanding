@@ -26,7 +26,7 @@ const Footer = () => {
       {/* Top Accent */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent" />
 
-      <div className="w-full max-w-[85rem] 2xl:max-w-5xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
+      <div className="w-full max-w-[85rem] 2xl:max-w-6xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14 mb-10 sm:mb-14">
           
           {/* Brand */}

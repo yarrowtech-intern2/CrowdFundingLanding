@@ -50,7 +50,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-2 sm:top-4 left-0 w-full z-50 pointer-events-none transition-all duration-300">
-      <div className="w-full max-w-[85rem] 2xl:max-w-5xl mx-auto px-4 sm:px-12 lg:px-20 grid grid-cols-[1fr_auto_1fr] items-center pointer-events-auto relative">
+      <div className="w-full max-w-[85rem] 2xl:max-w-6xl mx-auto px-4 sm:px-12 lg:px-20 grid grid-cols-[1fr_auto_1fr] items-center pointer-events-auto relative">
         
         {/* Logo */}
         <motion.div 
