@@ -32,7 +32,7 @@ const SecurityCompliance = () => {
           className="text-center mb-16 sm:mb-20" 
           initial={{ opacity: 0, x: -50 }} 
           whileInView={{ opacity: 1, x: 0 }} 
-          viewport={{ once: true }}
+          viewport={{ amount: 0.2 }}
           transition={{ duration: 0.8 }}
         >
           <span className="inline-block text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-indigo-600 bg-indigo-50 px-5 py-1.5 rounded-full mb-6">
@@ -53,7 +53,7 @@ const SecurityCompliance = () => {
               key={item.id} 
               initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100, y: 40 }} 
               whileInView={{ opacity: 1, x: 0, y: 0 }} 
-              viewport={{ once: true }}
+              viewport={{ amount: 0.2 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.1 }} 
               className="bg-white rounded-[1.5rem] p-10 shadow-sm border border-slate-100 hover:bg-indigo-50/40 hover:border-indigo-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col group cursor-default"
             >

@@ -8,7 +8,7 @@ const AboutUs = () => {
       <div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-18 2xl:gap-32 items-center">
         
         {/* Left: Content */}
-        <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
+        <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ amount: 0.2 }} transition={{ duration: 0.8 }}>
           <span className="inline-block text-[10px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 px-4 py-1.5 md:py-2 rounded-full mb-6 sm:mb-8">
             About Us
           </span>
@@ -24,8 +24,8 @@ const AboutUs = () => {
         </motion.div>
 
         {/* Right: Image */}
-        <motion.div initial={{ opacity: 0, scale: 0.95, x: 50 }} whileInView={{ opacity: 1, scale: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="flex justify-center">
-          <div className="relative w-full max-w-[280px] sm:max-w-[420px] lg:max-w-full">
+        <motion.div initial={{ opacity: 0, scale: 0.95, x: 50 }} whileInView={{ opacity: 1, scale: 1, x: 0 }} viewport={{ amount: 0.2 }} transition={{ duration: 0.8 }} className="flex justify-center">
+          <div className="relative w-full max-w-[280px] sm:max-w-[420px] lg:max-w-xl 2xl:max-w-2xl">
             <div className="absolute -inset-8 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-3xl blur-2xl opacity-30 shadow-2xl"></div>
             <div className="relative p-2 sm:p-3 bg-white/40 backdrop-blur-md rounded-[2.5rem] sm:rounded-[3rem] border border-white/60 shadow-2xl overflow-hidden aspect-[4/3]">
               <img src={aboutImg} alt="About Us" className="rounded-[2.2rem] sm:rounded-[2.8rem] w-full h-full object-cover transition-transform duration-700 hover:scale-105" />

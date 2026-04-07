@@ -60,7 +60,7 @@ const Header = () => {
           onClick={() => scrollToSection("home")} 
           className="cursor-pointer flex items-center gap-2 sm:gap-2.5 justify-self-start group"
         >
-          <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 2xl:w-14 2xl:h-14 rounded-full bg-indigo-600 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 2xl:w-13 2xl:h-13 rounded-full bg-indigo-600 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
             <span className="text-white font-bold text-xs md:text-sm 2xl:text-lg">M8</span>
           </div>
           <span className="text-base sm:text-lg md:text-xl 2xl:text-3xl font-black text-black tracking-tighter group-hover:text-indigo-600 transition-colors duration-300">
@@ -75,7 +75,7 @@ const Header = () => {
           transition={{ duration: 0.8 }}
           className="justify-self-center font-black"
         >
-          <div className={`hidden lg:flex items-center gap-6 xl:gap-8 2xl:gap-12 px-6 xl:px-8 2xl:px-14 py-2.5 xl:py-3.5 2xl:py-5 rounded-full border border-white/40 transition-all duration-500 ${
+          <div className={`hidden lg:flex items-center gap-6 xl:gap-8 2xl:gap-11 px-6 xl:px-8 2xl:px-12 py-2.5 xl:py-3.5 2xl:py-4.5 rounded-full border border-white/40 transition-all duration-500 ${
             scrolled ? "bg-white/90 backdrop-blur-xl shadow-xl shadow-indigo-100/50" : "bg-white/40 backdrop-blur-md"
           }`}>
             {navItems.map((item) => (
@@ -96,7 +96,7 @@ const Header = () => {
           transition={{ duration: 0.8 }}
           className="flex justify-end justify-self-end items-center gap-4"
         >
-          <button onClick={() => scrollToSection("contact")} className="hidden lg:flex px-6 xl:px-8 2xl:px-10 py-2.5 xl:py-3 2xl:py-4 bg-indigo-600 text-white font-black rounded-full text-xs xl:text-sm 2xl:text-lg hover:bg-indigo-700 transition-all active:scale-95">
+          <button onClick={() => scrollToSection("contact")} className="hidden lg:flex px-6 xl:px-8 2xl:px-10 py-2.5 xl:py-3.5 2xl:py-4 bg-indigo-600 text-white font-black rounded-full text-xs xl:text-sm 2xl:text-lg hover:bg-indigo-700 transition-all active:scale-95">
             Get Started
           </button>
           

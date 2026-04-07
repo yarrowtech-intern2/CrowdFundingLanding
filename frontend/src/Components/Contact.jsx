@@ -320,7 +320,7 @@ const ContactUs = () => {
 
       <div className="section-container relative z-10">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16 md:mb-24 2xl:mb-32" data-aos="fade-up">
+        <div className="text-center mb-10 sm:mb-14 md:mb-16 2xl:mb-20" data-aos="fade-up">
           <span className="inline-block text-xs md:text-sm font-bold uppercase tracking-widest text-primary bg-indigo-50 px-5 py-2 rounded-full mb-4 sm:mb-6">
             Get In Touch
           </span>
@@ -338,9 +338,9 @@ const ContactUs = () => {
         </div>
 
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 xl:gap-24 2xl:gap-28">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-11 lg:gap-12 xl:gap-14 2xl:gap-16">
           {/* Contact Info */}
-          <div className="space-y-6 sm:space-y-8 md:space-y-12" data-aos="fade-right">
+          <div className="space-y-6 sm:space-y-7 md:space-y-8" data-aos="fade-right">
             {[
               {
                 icon: <MdEmail size={24} />,
@@ -368,16 +368,16 @@ const ContactUs = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-6 sm:gap-8 bg-white rounded-3xl p-6 sm:p-8 md:p-10 2xl:p-14 shadow-lg border border-gray-100 hover:shadow-2xl z-50 hover:-translate-y-1 transition-all duration-300"
+                className="group flex items-center gap-4 bg-white rounded-xl p-4 sm:p-5 2xl:p-6 shadow-md border border-gray-100 hover:shadow-xl z-50 hover:-translate-y-0.5 transition-all duration-300"
               >
-                <div className="flex-shrink-0 h-14 w-14 sm:h-16 sm:w-16 2xl:h-20 2xl:w-20 flex items-center justify-center rounded-2xl 2xl:rounded-3xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-xl group-hover:scale-110 transition-transform duration-300">
+                <div className="flex-shrink-0 h-10 w-10 sm:h-11 sm:w-11 2xl:h-12 2xl:w-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-lg group-hover:scale-105 transition-transform duration-300">
                   {item.icon}
                 </div>
                 <div>
-                  <h4 className="text-lg sm:text-xl md:text-2xl 2xl:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">
+                  <h4 className="text-sm sm:text-base font-bold text-gray-900 mb-0.5">
                     {item.title}
                   </h4>
-                  <p className="text-black text-base sm:text-lg md:text-xl 2xl:text-2xl leading-relaxed font-medium">
+                  <p className="text-gray-900 text-xs sm:text-sm leading-relaxed font-medium">
                     {item.value}
                   </p>
                 </div>
@@ -387,9 +387,9 @@ const ContactUs = () => {
 
           {/* Contact Form */}
           <div data-aos="fade-left">
-            <div className="bg-white rounded-[2.5rem] shadow-2xl p-6 sm:p-10 md:p-14 2xl:p-20 border border-gray-100">
+            <div className="bg-white rounded-[2.5rem] shadow-2xl p-6 sm:p-8 md:p-10 2xl:p-12 border border-gray-100">
               <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">Send a Message</h3>
-              <p className="text-black text-base sm:text-lg font-medium mb-8 sm:mb-10 lg:mb-12">
+              <p className="text-gray-600 text-sm sm:text-base font-medium mb-8 sm:mb-10 lg:mb-12">
                 Fill out the form below and we'll respond within 24 hours.
               </p>
 
@@ -397,7 +397,7 @@ const ContactUs = () => {
                 {/* Row 1 */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-base font-bold text-black mb-3">
+                    <label className="block text-sm font-bold text-gray-900 mb-3">
                       Full Name <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
@@ -420,7 +420,7 @@ const ContactUs = () => {
                   </div>
 
                   <div>
-                    <label className="block text-base font-bold text-black mb-3">
+                    <label className="block text-sm font-bold text-gray-900 mb-3">
                       Email Address <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
@@ -446,7 +446,7 @@ const ContactUs = () => {
                 {/* Row 2 */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-base font-bold text-black mb-3">
+                    <label className="block text-sm font-bold text-gray-900 mb-3">
                       Phone Number <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
@@ -470,7 +470,7 @@ const ContactUs = () => {
 
                   {/* ✅ Address with suggestions */}
                   <div className="relative" ref={dropdownRef}>
-                    <label className="block text-base font-bold text-black mb-3">
+                    <label className="block text-sm font-bold text-gray-900 mb-3">
                       Address <span className="text-red-500 ml-1">*</span>
                     </label>
 
@@ -539,8 +539,8 @@ const ContactUs = () => {
                 {/* Message */}
                 <div>
                   <div className="flex justify-between items-center mb-3">
-                    <label className="block text-base font-bold text-black">
-                      Message <span className="text-gray-400 font-normal text-sm ml-2">(Optional)</span>
+                    <label className="block text-sm font-bold text-gray-800">
+                      Message <span className="text-gray-400 font-normal text-xs ml-2">(Optional)</span>
                     </label>
                     <span className="text-xs text-gray-500 font-bold">{form.message.length}/500</span>
                   </div>

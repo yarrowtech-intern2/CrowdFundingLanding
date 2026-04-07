@@ -33,12 +33,12 @@ const Footer = () => {
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ amount: 0.2 }}
             transition={{ duration: 0.8 }}
             className="sm:col-span-2 lg:col-span-1"
           >
-            <h3 className="text-xl sm:text-2xl 2xl:text-4xl font-black text-white mb-6">M8-BID</h3>
-            <p className="text-slate-400 text-sm sm:text-base 2xl:text-xl max-w-sm font-medium leading-relaxed mb-8">
+            <h3 className="text-xl sm:text-2xl 2xl:text-3xl font-black text-white mb-6">M8-BID</h3>
+            <p className="text-slate-400 text-sm sm:text-base 2xl:text-base max-w-sm font-medium leading-relaxed mb-8">
               Empowering global visionaries through elite capital connection and secure, transparent crowdfunding solutions.
             </p>
           </motion.div>
@@ -47,14 +47,14 @@ const Footer = () => {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ amount: 0.2 }}
             transition={{ duration: 0.8 }}
           >
-            <h4 className="text-white font-bold text-sm sm:text-base 2xl:text-2xl mb-6 uppercase tracking-widest">Quick Links</h4>
+            <h4 className="text-white font-bold text-sm sm:text-base 2xl:text-lg mb-6 uppercase tracking-widest">Quick Links</h4>
             <ul className="space-y-4">
               {quickLinks.map((link) => (
                 <li key={link.id}>
-                  <button onClick={() => scrollToSection(link.id)} className="text-slate-400 hover:text-indigo-400 text-xs sm:text-sm 2xl:text-lg transition-colors font-semibold">
+                  <button onClick={() => scrollToSection(link.id)} className="text-slate-400 hover:text-indigo-400 text-xs sm:text-sm 2xl:text-base transition-colors font-semibold">
                     {link.name}
                   </button>
                 </li>
@@ -66,11 +66,11 @@ const Footer = () => {
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ amount: 0.2 }}
             transition={{ duration: 0.8 }}
           >
-            <h4 className="text-white font-bold text-sm sm:text-base 2xl:text-2xl mb-6 uppercase tracking-widest">Connect</h4>
-            <div className="space-y-4 text-xs sm:text-sm 2xl:text-lg mb-8">
+            <h4 className="text-white font-bold text-sm sm:text-base 2xl:text-lg mb-6 uppercase tracking-widest">Connect</h4>
+            <div className="space-y-4 text-xs sm:text-sm 2xl:text-base mb-8">
               <a href="#" className="flex items-start gap-3 text-slate-400 hover:text-indigo-400 transition-colors">
                 <MdLocationOn className="text-indigo-500 w-5 h-5 flex-shrink-0" />
                 <span>3A, Bertram St, Esplanade, Dharmatala, Kolkata 700087</span>
@@ -95,9 +95,9 @@ const Footer = () => {
         <motion.div 
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ amount: 0.2 }}
           transition={{ duration: 0.8 }}
-          className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] sm:text-xs 2xl:text-sm text-slate-500 font-bold uppercase tracking-widest"
+          className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] sm:text-xs 2xl:text-[11px] text-slate-500 font-bold uppercase tracking-widest"
         >
           <p>© {new Date().getFullYear()} M8-BID. All rights reserved.</p>
           <div className="flex gap-6">

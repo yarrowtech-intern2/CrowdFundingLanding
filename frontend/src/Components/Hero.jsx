@@ -39,7 +39,7 @@ const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
           
           {/* CONTENT */}
-          <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-left order-last lg:order-first">
+          <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ amount: 0.2 }} transition={{ duration: 0.8 }} className="text-left order-last lg:order-first">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-sm border border-indigo-100/50 shadow-sm mb-8 w-fit">
               <div className="relative flex h-2 w-2">
                 <div className="animate-ping absolute h-full w-full rounded-full bg-indigo-400 opacity-75"></div>
@@ -70,7 +70,7 @@ const Hero = () => {
 
           {/* IMAGE */}
           <motion.div initial={{ opacity: 0, scale: 0.95, x: 50 }} whileInView={{ opacity: 1, scale: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="flex justify-center">
-            <div className="relative w-full max-w-[300px] sm:max-w-[480px] lg:max-w-full animate-float">
+            <div className="relative w-full max-w-[300px] sm:max-w-[480px] lg:max-w-xl 2xl:max-w-2xl animate-float">
               <div className="absolute -inset-10 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 blur-3xl rounded-full" />
               <div className="relative p-2 sm:p-3 bg-white/40 backdrop-blur-md rounded-[2.5rem] sm:rounded-[3.5rem] border border-white/60 shadow-2xl overflow-hidden aspect-[4/3]">
                 <img src={handshakeImg} alt="M8 Partnership" className="rounded-[2.2rem] sm:rounded-[3.2rem] w-full h-full object-cover" />
