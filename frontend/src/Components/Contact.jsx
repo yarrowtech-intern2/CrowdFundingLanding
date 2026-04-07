@@ -331,7 +331,7 @@ const ContactUs = () => {
               Conversation
             </span>
           </h2>
-          <p className="max-w-2xl mx-auto text-body text-gray-500 font-medium leading-relaxed">
+          <p className="max-w-2xl mx-auto text-body text-gray-900 font-medium leading-relaxed">
             Ready to transform your vision into reality? Our team is here to 
             support your journey towards global impact.
           </p>
@@ -377,7 +377,7 @@ const ContactUs = () => {
                   <h4 className="text-lg sm:text-xl md:text-2xl 2xl:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">
                     {item.title}
                   </h4>
-                  <p className="text-gray-600 text-sm sm:text-base md:text-lg 2xl:text-xl leading-relaxed font-medium">
+                  <p className="text-black text-base sm:text-lg md:text-xl 2xl:text-2xl leading-relaxed font-medium">
                     {item.value}
                   </p>
                 </div>
@@ -389,7 +389,7 @@ const ContactUs = () => {
           <div data-aos="fade-left">
             <div className="bg-white rounded-[2.5rem] shadow-2xl p-6 sm:p-10 md:p-14 2xl:p-20 border border-gray-100">
               <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">Send a Message</h3>
-              <p className="text-gray-600 text-sm sm:text-base font-medium mb-8 sm:mb-10 lg:mb-12">
+              <p className="text-black text-base sm:text-lg font-medium mb-8 sm:mb-10 lg:mb-12">
                 Fill out the form below and we'll respond within 24 hours.
               </p>
 
@@ -397,7 +397,7 @@ const ContactUs = () => {
                 {/* Row 1 */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-bold text-gray-800 mb-3">
+                    <label className="block text-base font-bold text-black mb-3">
                       Full Name <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
@@ -420,7 +420,7 @@ const ContactUs = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-bold text-gray-800 mb-3">
+                    <label className="block text-base font-bold text-black mb-3">
                       Email Address <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
@@ -446,7 +446,7 @@ const ContactUs = () => {
                 {/* Row 2 */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-bold text-gray-800 mb-3">
+                    <label className="block text-base font-bold text-black mb-3">
                       Phone Number <span className="text-red-500 ml-1">*</span>
                     </label>
                     <input
@@ -470,7 +470,7 @@ const ContactUs = () => {
 
                   {/* ✅ Address with suggestions */}
                   <div className="relative" ref={dropdownRef}>
-                    <label className="block text-sm font-bold text-gray-800 mb-3">
+                    <label className="block text-base font-bold text-black mb-3">
                       Address <span className="text-red-500 ml-1">*</span>
                     </label>
 
@@ -539,8 +539,8 @@ const ContactUs = () => {
                 {/* Message */}
                 <div>
                   <div className="flex justify-between items-center mb-3">
-                    <label className="block text-sm font-bold text-gray-800">
-                      Message <span className="text-gray-400 font-normal text-xs ml-2">(Optional)</span>
+                    <label className="block text-base font-bold text-black">
+                      Message <span className="text-gray-400 font-normal text-sm ml-2">(Optional)</span>
                     </label>
                     <span className="text-xs text-gray-500 font-bold">{form.message.length}/500</span>
                   </div>

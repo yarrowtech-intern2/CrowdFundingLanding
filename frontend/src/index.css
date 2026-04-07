@@ -10,11 +10,15 @@
   --breakpoint-3xl: 1920px;
 
   /* ELEGANT & TIGHT PROPORTIONAL TOKENS */
-  --fluid-gap: clamp(1rem, 3vw, 3rem); /* Closer content for better cohesion */
-  --fluid-py: clamp(3.5rem, 8vh, 9rem);   /* Balanced vertical margins */
-  --fluid-px: clamp(1rem, 5vw, 5rem);     /* Stable side padding */
-  --max-content-width: 80rem; /* ✨ 1280px: The elite standard for aligned landing pages */
-  
+  --fluid-gap: clamp(1rem, 3vw, 3rem);
+  /* Closer content for better cohesion */
+  --fluid-py: clamp(3.5rem, 8vh, 9rem);
+  /* Balanced vertical margins */
+  --fluid-px: clamp(1rem, 5vw, 5rem);
+  /* Stable side padding */
+  --max-content-width: 88rem;
+  /* ✨ 1504px: The elite standard for ultra-wide alignment */
+
   --color-primary: #2e66ff;
   --color-primary-dark: #0f172a;
   --color-surface: #f6f7fb;
@@ -29,8 +33,6 @@
     overflow-x: hidden;
   }
 
-  @media (min-width: 1920px) { html { font-size: 17px; } }
-
   body {
     margin: 0;
     padding: 0;
@@ -42,13 +44,17 @@
     box-sizing: border-box;
   }
 
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     box-sizing: inherit;
   }
 }
 
 @layer components {
+
   /* MASTER GRID ENGINE: Forces absolute symmetry on wide screens */
+
   .section-container {
     width: 100% !important;
     max-width: var(--max-content-width) !important;
@@ -60,7 +66,7 @@
   }
 
   /* Automatic Full-Width for devices below the ceiling */
-  @media (max-width: 1280px) {
+  @media (max-width: 1536px) {
     .section-container {
       max-width: 100% !important;
     }
@@ -87,12 +93,35 @@
     font-weight: 500;
     opacity: 0.9;
   }
+
+  /* Smaller typography for 2xl (1440px) and above */
+  @media (min-width: 1440px) {
+    .heading-hero {
+      font-size: clamp(2rem, 4vw + 0.5rem, 3.5rem);
+    }
+
+    .heading-section {
+      font-size: clamp(1.6rem, 2.5vw + 0.5rem, 2.8rem);
+    }
+
+    .text-body {
+      font-size: clamp(0.9rem, 0.25vw + 0.8rem, 1rem);
+    }
+  }
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .animate-float {

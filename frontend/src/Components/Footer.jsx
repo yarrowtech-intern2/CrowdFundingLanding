@@ -18,7 +18,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#0f172a] text-gray-300 py-[var(--size-fluid-section-py)] relative overflow-hidden">
+    <footer className="bg-[#0f172a] text-gray-300 py-[var(--fluid-py)] relative overflow-hidden">
       {/* Gradient Top Border */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600" />
 

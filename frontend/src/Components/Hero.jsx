@@ -96,7 +96,7 @@ const Hero = () => {
       </div>
 
       {/* Main Content */}
-      <div className="section-container pt-24 sm:pt-28 lg:pt-32 xl:pt-40 2xl:pt-48 pb-14 sm:pb-16 lg:pb-24 xl:pb-32 2xl:pb-40 relative z-10">
+      <div className="section-container pt-24 sm:pt-28 lg:pt-32 xl:pt-40 2xl:pt-48 pb-[var(--fluid-py)] relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center">
           {/* Left Column: Text Content */}
           <motion.div

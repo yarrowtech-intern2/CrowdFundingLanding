@@ -7,9 +7,9 @@ const AboutUs = () => {
   return (
     <section
       id="about"
-      className="w-full bg-gradient-to-b from-[#f8f9ff] via-[#f3f5ff] to-[#eef2ff] py-16 sm:py-20 md:py-28 lg:py-36 2xl:py-48 overflow-hidden"
+      className="w-full bg-gradient-to-b from-white via-[#f8f9ff] to-white py-[var(--fluid-py)] overflow-hidden"
     >
-      <div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 xl:gap-24 items-center">
+      <div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-20 xl:gap-24 items-center">
         {/* LEFT CONTENT */}
         <motion.div
           initial={{ opacity: 0, x: -70 }}
@@ -29,7 +29,7 @@ const AboutUs = () => {
             </span>
           </h2>
 
-          <p className="text-body text-slate-500 mb-8 sm:mb-10 md:mb-12 max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-4xl font-medium">
+          <p className="text-body text-black mb-8 sm:mb-10 md:mb-12 max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-4xl font-medium">
             Dismantling the walls between vision and capital. We provide the
             engine for human progress, fueling the minds that define our future.
           </p>
@@ -37,7 +37,7 @@ const AboutUs = () => {
 
         {/* RIGHT IMAGE */}
         <motion.div
-          className="relative group max-w-sm sm:max-w-md lg:max-w-full xl:max-w-2xl 2xl:max-w-3xl mx-auto w-full"
+          className="relative group max-w-sm sm:max-w-md lg:max-w-full xl:max-w-[85%] 2xl:max-w-[80%] mx-auto w-full"
           initial={{ opacity: 0, x: 70 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: false, amount: 0.3 }}

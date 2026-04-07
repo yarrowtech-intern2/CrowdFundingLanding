@@ -7,12 +7,12 @@ const FundraiserSection = () => {
   return (
     <section
       id="fundraise"
-      className="w-full bg-gradient-to-b from-[#f8f9ff] via-[#f3f5ff] to-[#eef2ff] flex items-center overflow-hidden py-16 sm:py-20 md:py-28 lg:py-36 2xl:py-48"
+      className="w-full bg-white flex items-center overflow-hidden py-[var(--fluid-py)]"
     >
-      <div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 xl:gap-24 items-center">
+      <div className="section-container grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-20 xl:gap-24 items-center">
         {/* LEFT IMAGE */}
         <motion.div
-          className="relative group max-w-sm sm:max-w-md lg:max-w-full xl:max-w-2xl 2xl:max-w-3xl mx-auto w-full"
+          className="relative group max-w-sm sm:max-w-md lg:max-w-full xl:max-w-[85%] 2xl:max-w-[80%] mx-auto w-full"
           initial={{ opacity: 0, x: -70 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -45,8 +45,8 @@ const FundraiserSection = () => {
             <span className="text-primary italic">Architect the Future</span>
           </h1>
 
-          <p className="text-body text-gray-600 mb-8 sm:mb-10 md:mb-12 max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-4xl font-medium">
-            Launch your vision with <strong>0% platform fees</strong>, global
+          <p className="text-body text-black mb-8 sm:mb-10 md:mb-12 max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-4xl font-medium">
+            Launch your vision with <strong>minimal platform fees</strong>, global
             reach, and a direct line to elite capital. We provide the tools and
             exposure you need to transition from an idea to a global market
             leader with unshakeable speed.

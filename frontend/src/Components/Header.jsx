@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 
 const HEADER_HEIGHT = 100;
 
@@ -109,16 +110,26 @@ const Header = () => {
         {/* RIGHT — Mobile hamburger */}
         <div className="flex justify-end justify-self-end">
           <button
-            className="lg:hidden w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-white/80 backdrop-blur-md rounded-full shadow-lg border border-gray-100 text-black text-xl p-2 active:scale-90 transition-transform duration-200"
+            className="lg:hidden w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-white/80 backdrop-blur-md rounded-full shadow-lg border border-gray-100/50 text-black text-xl p-2 active:scale-90 transition-transform duration-200 cursor-pointer"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            {menuOpen ? <FaTimes /> : <FaBars />}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={menuOpen ? "times" : "bars"}
+                initial={{ opacity: 0, rotate: -90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0, rotate: 90 }}
+                transition={{ duration: 0.2 }}
+              >
+                {menuOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
+              </motion.div>
+            </AnimatePresence>
           </button>
           
-          {/* Desktop Call to Action (optional, but adds symmetry) */}
+          {/* Desktop Call to Action */}
           <button 
             onClick={() => scrollToSection("contact")}
-            className="hidden lg:flex px-6 xl:px-8 py-3 xl:py-3.5 bg-indigo-600 text-white font-bold rounded-full text-sm xl:text-base hover:bg-indigo-700 hover:shadow-xl hover:shadow-indigo-200 transition-all duration-300 active:scale-95"
+            className="hidden lg:flex px-6 xl:px-8 py-3 xl:py-3.5 bg-indigo-600 text-white font-bold rounded-full text-sm xl:text-base hover:bg-indigo-700 hover:shadow-xl hover:shadow-indigo-200 transition-all duration-300 active:scale-95 cursor-pointer"
           >
             Get Started
           </button>
@@ -127,27 +138,41 @@ const Header = () => {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {menuOpen && (
-        <div className="mt-3 w-full max-w-7xl mx-auto lg:hidden pointer-events-auto">
-          <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100">
-            <div className="flex flex-col px-5 py-4">
-              {navItems.map((item) => (
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            className="mt-3 w-full max-w-[95%] sm:max-w-7xl mx-auto lg:hidden pointer-events-auto"
+          >
+            <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+              <div className="flex flex-col px-6 py-5 gap-1">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`text-left py-3.5 px-4 text-base font-bold rounded-xl transition-all duration-300 ${
+                      activeSection === item.id
+                        ? "text-indigo-600 bg-indigo-50/50"
+                        : "text-gray-800 hover:text-indigo-500 hover:bg-gray-50"
+                    }`}
+                  >
+                    {item.name}
+                  </button>
+                ))}
                 <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`text-left py-3 text-base font-medium border-b border-gray-50 last:border-0 transition-colors duration-200 ${
-                    activeSection === item.id
-                      ? "text-indigo-600"
-                      : "text-gray-800 hover:text-indigo-500"
-                  }`}
+                  onClick={() => scrollToSection("contact")}
+                  className="mt-4 w-full py-4 bg-indigo-600 text-white font-black rounded-xl shadow-lg shadow-indigo-200 active:scale-95 transition-all duration-200"
                 >
-                  {item.name}
+                  Get Started
                 </button>
-              ))}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </header>
   );

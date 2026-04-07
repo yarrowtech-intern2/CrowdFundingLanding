@@ -14,9 +14,11 @@ const App = () => {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>Crowd Funding - Empowerment through Community</title>
-        <meta name="description" content="A next-generation crowd funding platform connecting visionaries with investors for impactful projects." />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>M8-BID | Empowering Visionaries & Elite Capital</title>
+        <meta name="description" content="Next-generation crowdfunding connecting global visionaries with elite strategic capital partners." />
+        <meta property="og:title" content="M8-BID | Elite Crowdfunding Platform" />
+        <meta property="og:description" content="Transform extraordinary sparks into market-defining landmarks through our secure, transparent platform." />
+        <meta property="og:type" content="website" />
       </Helmet>
       <Header />
       <Hero />
