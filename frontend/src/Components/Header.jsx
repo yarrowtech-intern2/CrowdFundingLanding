@@ -50,15 +50,15 @@ const Header = () => {
 
   return (
     <header className="fixed top-2 sm:top-3 md:top-4 left-0 w-full z-50 pointer-events-none transition-all duration-300">
-      <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 md:px-8 lg:px-12 grid grid-cols-[1fr_auto_1fr] items-center pointer-events-auto relative">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex items-center justify-between pointer-events-auto relative">
         
-        {/* Logo */}
+        {/* Logo (Left) */}
         <motion.div 
           initial={{ opacity: 0, x: -20 }} 
           animate={{ opacity: 1, x: 0 }} 
           transition={{ duration: 0.6 }}
           onClick={() => scrollToSection("home")} 
-          className="cursor-pointer flex items-center gap-1.5 sm:gap-2 md:gap-2.5 justify-self-start group"
+          className="cursor-pointer flex items-center gap-2 sm:gap-2.5 justify-start group flex-shrink-0"
         >
           {/* Logo Circle */}
           <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-indigo-600 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300">
@@ -71,14 +71,14 @@ const Header = () => {
           </span>
         </motion.div>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation (Center/Spaced) */}
         <motion.div 
           initial={{ opacity: 0, y: -10 }} 
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="justify-self-center hidden lg:block"
+          className="hidden lg:block absolute left-1/2 -translate-x-1/2"
         >
-          <nav className={`flex items-center gap-4 xl:gap-6 2xl:gap-8 px-4 sm:px-5 md:px-6 xl:px-8 py-2 sm:py-2.5 md:py-3 rounded-full border border-white/40 transition-all duration-500 ${
+          <nav className={`flex items-center gap-4 xl:gap-8 px-6 py-3 rounded-full border border-white/40 transition-all duration-500 ${
             scrolled 
               ? "bg-white/95 backdrop-blur-xl shadow-2xl shadow-indigo-100/40 border-indigo-100/60" 
               : "bg-white/50 backdrop-blur-sm border-white/30"
@@ -87,7 +87,7 @@ const Header = () => {
               <button 
                 key={item.id} 
                 onClick={() => scrollToSection(item.id)} 
-                className={`text-[10px] sm:text-xs md:text-sm xl:text-base font-bold transition-all relative group/item whitespace-nowrap px-1 py-1 ${
+                className={`text-xs md:text-sm xl:text-base font-bold transition-all relative group/item whitespace-nowrap px-1 py-1 ${
                   activeSection === item.id 
                     ? "text-indigo-600" 
                     : "text-slate-700 hover:text-indigo-600"
@@ -104,31 +104,32 @@ const Header = () => {
           </nav>
         </motion.div>
 
-        {/* Right Controls */}
+        {/* Right Controls (Right) */}
         <motion.div 
           initial={{ opacity: 0, x: 20 }} 
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex justify-end items-center gap-2 sm:gap-3 md:gap-4"
+          className="flex justify-end items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0"
         >
           {/* Desktop CTA Button */}
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => scrollToSection("contact")} 
-            className="hidden md:flex px-4 sm:px-5 md:px-6 lg:px-7 xl:px-8 py-2 sm:py-2.5 md:py-3 bg-indigo-600 text-white font-bold text-[10px] sm:text-xs md:text-sm lg:text-base rounded-full hover:bg-indigo-700 transition-all active:scale-95 shadow-lg shadow-indigo-200 hover:shadow-xl hover:shadow-indigo-300"
+            className="hidden md:flex px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-indigo-600 text-white font-bold text-xs md:text-sm rounded-full hover:bg-indigo-700 transition-all active:scale-95 shadow-lg shadow-indigo-200 hover:shadow-xl hover:shadow-indigo-300"
           >
             Get Started
           </motion.button>
           
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Toggle - Strictly Right Aligned */}
           <motion.button 
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-white rounded-full shadow-lg border border-slate-200 text-slate-900 hover:bg-slate-50 transition-all"
+            className="lg:hidden w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-lg border border-slate-200 text-slate-900 hover:bg-slate-50 transition-all ml-auto"
+            aria-label="Toggle Menu"
           >
-            {menuOpen ? <FaTimes size={14} className="sm:block" /> : <FaBars size={14} className="sm:block" />}
+            {menuOpen ? <FaTimes size={16} /> : <FaBars size={16} />}
           </motion.button>
         </motion.div>
       </div>

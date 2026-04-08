@@ -211,30 +211,7 @@ const ContactUs = () => {
           </div>
         </div>
 
-        {/* Full-Width Map Detail */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ amount: 0.1 }}
-          transition={{ duration: 1 }}
-          className="mt-20 sm:mt-24 2xl:mt-16 w-full h-[350px] sm:h-[450px] 2xl:h-[400px] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white relative group"
-        >
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.2755315510!2d88.351239!3d22.5606456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0277063cc9b257%3A0xe54970477e68e4c7!2s3A%2C%20Bertram%20St%2C%20Esplanade%2C%20Kolkata%2C%20West%20Bengal%20700087!5e0!3m2!1sen!2sin!4v1712495000000!5m2!1sen!2sin"
-            width="100%"
-            height="100%"
-            style={{ border: 0, filter: "grayscale(1) contrast(1.1) brightness(1.05)" }}
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Office Location"
-            className="hover:grayscale-0 transition-all duration-1000"
-          />
-          <div className="absolute top-6 left-6 2xl:top-4 2xl:left-4 bg-white/90 backdrop-blur-md p-4 2xl:p-3 rounded-2xl shadow-xl border border-indigo-50/50 hidden sm:block">
-            <h5 className="text-sm 2xl:text-xs font-black text-slate-900 mb-1">Corporate HQ</h5>
-            <p className="text-xs 2xl:text-[10px] font-bold text-indigo-600">Esplanade, Kolkata</p>
-          </div>
-        </motion.div>
+
       </div>
     </section>
   );
