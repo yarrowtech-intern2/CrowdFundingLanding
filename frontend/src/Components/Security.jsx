@@ -25,11 +25,11 @@ const SecurityCompliance = () => {
   ];
 
   return (
-    <section id="security" className="w-full bg-[#fdfdff] py-12 md:py-20 lg:py-24 2xl:py-20">
+    <section id="security" className="w-full bg-[#fdfdff] py-12 md:py-20 lg:py-16 xl:py-16 2xl:py-16">
       <div className="w-full max-w-[85rem] 2xl:max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
         {/* Header */}
         <motion.div 
-          className="text-center mb-16 sm:mb-24 2xl:mb-12" 
+          className="text-center mb-16 sm:mb-24 2xl:mb-8" 
           initial={{ opacity: 0, y: 30 }} 
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ amount: 0.2 }}
@@ -38,7 +38,7 @@ const SecurityCompliance = () => {
           <span className="inline-block text-[10px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 px-5 py-2 rounded-full mb-8">
             Trust &amp; Safety
           </span>
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[2.5rem] xl:text-[2.75rem] 2xl:text-[2.75rem] font-bold leading-[1.1] tracking-tight text-slate-900 mb-8 sm:mb-10">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[2.5rem] xl:text-[2.5rem] 2xl:text-[2.5rem] font-bold leading-[1.1] tracking-tight text-slate-900 mb-8 sm:mb-10">
             Security &amp; <span className="text-indigo-600 italic font-serif pr-2">Compliance</span>
           </h2>
           <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-lg font-medium leading-relaxed text-slate-900">

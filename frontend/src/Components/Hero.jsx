@@ -18,7 +18,7 @@ const Hero = () => {
   return (
     <section id="home" className="relative w-full min-h-screen flex items-center justify-center bg-[#fdfdff] pt-20 overflow-visible">
       <Helmet>
-        <title>M8-BID | Vision to Legacy</title>
+        <title>M8-BID</title>
       </Helmet>
 
       {/* Grid Overlay */}
