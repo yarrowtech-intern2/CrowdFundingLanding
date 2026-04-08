@@ -38,7 +38,7 @@ const SecurityCompliance = () => {
           <span className="inline-block text-[10px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 px-5 py-2 rounded-full mb-8">
             Trust &amp; Safety
           </span>
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[3rem] xl:text-[3.5rem] 2xl:text-[2.75rem] font-bold leading-[1.1] tracking-tight text-slate-900 mb-8 sm:mb-10">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[2.5rem] xl:text-[2.75rem] 2xl:text-[2.75rem] font-bold leading-[1.1] tracking-tight text-slate-900 mb-8 sm:mb-10">
             Security &amp; <span className="text-indigo-600 italic font-serif pr-2">Compliance</span>
           </h2>
           <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-lg font-medium leading-relaxed text-slate-900">
