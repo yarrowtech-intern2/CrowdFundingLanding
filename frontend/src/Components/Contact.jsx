@@ -132,11 +132,11 @@ const ContactUs = () => {
   };
 
   return (
-    <section id="contact" className="relative py-12 md:py-20 lg:py-24 2xl:py-24 bg-gradient-to-b from-[#f8faff] via-white to-[#f3f6ff] overflow-hidden">
+    <section id="contact" className="relative py-12 md:py-20 lg:py-24 2xl:py-20 bg-gradient-to-b from-[#f8faff] via-white to-[#f3f6ff]">
       <div className="w-full max-w-[85rem] 2xl:max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
         
         {/* Header */}
-        <div className="text-center mb-16 sm:mb-20 2xl:mb-20">
+        <div className="text-center mb-16 sm:mb-20 2xl:mb-12">
           <span className="inline-block text-[10px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 px-5 py-2 rounded-full mb-8">
             Get In Touch
           </span>
@@ -148,7 +148,7 @@ const ContactUs = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 2xl:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 2xl:gap-16">
           {/* Info */}
           <div className="space-y-8 2xl:space-y-10">
             {[
@@ -217,7 +217,7 @@ const ContactUs = () => {
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ amount: 0.1 }}
           transition={{ duration: 1 }}
-          className="mt-20 sm:mt-24 2xl:mt-24 w-full h-[350px] sm:h-[450px] 2xl:h-[500px] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white relative group"
+          className="mt-20 sm:mt-24 2xl:mt-16 w-full h-[350px] sm:h-[450px] 2xl:h-[400px] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white relative group"
         >
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.2755315510!2d88.351239!3d22.5606456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0277063cc9b257%3A0xe54970477e68e4c7!2s3A%2C%20Bertram%20St%2C%20Esplanade%2C%20Kolkata%2C%20West%20Bengal%20700087!5e0!3m2!1sen!2sin!4v1712495000000!5m2!1sen!2sin"

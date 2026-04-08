@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 const AboutUs = () => {
   return (
-    <section id="about" className="w-full bg-gradient-to-b from-[#f8faff] via-white to-[#f8faff] py-12 md:py-20 lg:py-24 2xl:py-24 overflow-hidden">
-      <div className="w-full max-w-[85rem] 2xl:max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 2xl:gap-24 items-center">
+    <section id="about" className="w-full bg-gradient-to-b from-[#f8faff] via-white to-[#f8faff] py-12 md:py-20 lg:py-24 2xl:py-20">
+      <div className="w-full max-w-[85rem] 2xl:max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 2xl:gap-20 items-center">
         
         {/* Left: Content */}
         <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ amount: 0.2 }} transition={{ duration: 0.8 }}>
@@ -13,7 +13,7 @@ const AboutUs = () => {
             About Us
           </span>
 
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[3rem] xl:text-[3.5rem] 2xl:text-[3rem] font-bold leading-[1.1] tracking-tight text-slate-900 mb-8 sm:mb-10">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[3rem] xl:text-[3.5rem] 2xl:text-[2.75rem] font-bold leading-[1.1] tracking-tight text-slate-900 mb-8 sm:mb-10">
             Architecting a World <br /> Where <br />
             <span className="text-indigo-600 italic font-serif pr-2">Innovation Has No Limits</span>
           </h2>
