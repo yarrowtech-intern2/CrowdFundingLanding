@@ -1,10 +1,13 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
 import { motion } from "framer-motion";
+import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
 
 const ContactUs = () => {
+  const sectionVariants = {
+    hidden: (direction) => ({ opacity: 0, x: direction === "left" ? -60 : 60 }),
+    visible: { opacity: 1, x: 0 },
+  };
+
   const [form, setForm] = useState({
     name: "", email: "", mobile: "", address: "", message: "",
     lat: "", lon: "", formattedAddress: "",
@@ -23,10 +26,6 @@ const ContactUs = () => {
   const abortRef = useRef(null);
   const debounceRef = useRef(null);
   const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    AOS.init({ duration: 1000, easing: "ease-out-cubic", once: true, offset: 80 });
-  }, []);
 
   useEffect(() => {
     const onDocClick = (e) => {
@@ -132,31 +131,57 @@ const ContactUs = () => {
   };
 
   return (
-    <section id="contact" className="relative py-12 md:py-20 lg:py-16 xl:py-16 2xl:py-16 bg-gradient-to-b from-[#f8faff] via-white to-[#f3f6ff]">
-      <div className="w-full max-w-[85rem] 2xl:max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
+    <section id="contact" className="relative py-14 sm:py-20 lg:py-24 bg-gradient-to-b from-[#f8faff] via-white to-[#f3f6ff]">
+      <div className="w-full max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 2xl:px-20 relative z-10">
         
         {/* Header */}
-        <div className="text-center mb-16 sm:mb-20 2xl:mb-8">
+        <motion.div
+          custom="left"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
+        >
           <span className="inline-block text-[10px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 px-5 py-2 rounded-full mb-8">
             Get In Touch
           </span>
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[2.5rem] xl:text-[2.5rem] 2xl:text-[2.5rem] font-bold leading-[1.1] tracking-tight text-slate-900 mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.9rem] 2xl:text-[3.2rem] font-bold leading-[1.1] tracking-tight text-slate-900 mb-6 sm:mb-8">
             Let's Start a <span className="text-indigo-600 italic font-serif pr-2">Conversation</span>
           </h2>
-          <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-lg font-medium leading-relaxed text-slate-900">
+          <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg lg:text-xl 2xl:text-xl font-medium leading-relaxed text-slate-900">
             Ready to transform your vision into reality? Our team is here to support your journey towards global impact.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 2xl:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 2xl:gap-16">
           {/* Info */}
-          <div className="space-y-8 2xl:space-y-10">
+          <motion.div
+            custom="left"
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.25 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="space-y-8 2xl:space-y-10"
+          >
             {[
               { icon: <MdEmail size={20} />, title: "Email", value: "hello@example.com", link: "mailto:hello@example.com" },
               { icon: <MdLocationOn size={20} />, title: "Address", value: "3A, Bertram St, Esplanade, Kolkata 700087", link: "#" },
               { icon: <MdPhone size={20} />, title: "Phone", value: "+91 98305 90929", link: "tel:+919830590929" },
             ].map((item, index) => (
-              <a key={index} href={item.link} className="flex items-center gap-6 bg-white rounded-2xl p-6 sm:p-8 2xl:p-10 shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-300">
+              <motion.a
+                key={index}
+                href={item.link}
+                custom={index % 2 === 0 ? "left" : "right"}
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.4 }}
+                transition={{ duration: 0.55, ease: "easeOut", delay: index * 0.08 }}
+                className="flex items-center gap-6 bg-white rounded-2xl p-6 sm:p-8 2xl:p-10 shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-300"
+              >
                 <div className="flex-shrink-0 h-12 w-12 sm:h-14 sm:w-14 2xl:h-16 2xl:w-16 flex items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-lg">
                   {React.cloneElement(item.icon, { size: 24 })}
                 </div>
@@ -164,12 +189,20 @@ const ContactUs = () => {
                   <h4 className="text-base sm:text-lg 2xl:text-xl font-bold text-slate-900 mb-1">{item.title}</h4>
                   <p className="text-slate-600 text-sm sm:text-base 2xl:text-base font-medium">{item.value}</p>
                 </div>
-              </a>
+              </motion.a>
             ))}
-          </div>
+          </motion.div>
 
           {/* Form */}
-          <div className="bg-white rounded-[3rem] shadow-2xl p-8 sm:p-12 2xl:p-14 border border-slate-100">
+          <motion.div
+            custom="right"
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.25 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="bg-white rounded-[3rem] shadow-2xl p-8 sm:p-12 2xl:p-14 border border-slate-100"
+          >
             <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8 2xl:space-y-8">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 2xl:gap-8">
                 <div>
@@ -208,7 +241,7 @@ const ContactUs = () => {
                 {isLoading ? "Sending..." : "Send Message"}
               </button>
             </form>
-          </div>
+          </motion.div>
         </div>
 
 
