@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import fundraiserImg from "../assets/Fundraiser.png";
+import fundraiserImg from "../assets/Fundraiser.webp";
 import { ArrowUpRight } from "lucide-react";
 
 const FundraiserSection = () => {

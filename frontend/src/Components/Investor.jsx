@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import investorImg from "../assets/Investor.png";
+import investorImg from "../assets/Investor.webp";
 import { BarChart3, TrendingUp, ArrowUpRight } from "lucide-react";
 
 const BrowseInvestors = () => {

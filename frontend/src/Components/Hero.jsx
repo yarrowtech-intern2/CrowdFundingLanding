@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
-import handshakeImg from "../assets/handshake.png";
+import handshakeImg from "../assets/handshake.webp";
 import { UserPlus, Wallet, ArrowRightLeft } from "lucide-react";
 
 const Hero = () => {
