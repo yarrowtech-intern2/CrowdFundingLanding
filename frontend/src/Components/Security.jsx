@@ -71,13 +71,17 @@ const SecurityCompliance = () => {
                 mass: 1,
                 delay: index * 0.15 
               }}
-              className="bg-white rounded-3xl sm:rounded-[2.5rem] p-5 xs:p-7 sm:p-9 lg:p-10 2xl:p-10 shadow-sm border border-slate-100 hover:bg-slate-50 transition-all duration-300 flex flex-col group transform-gpu"
+              className="bg-white rounded-3xl sm:rounded-[2.5rem] p-6 xs:p-7 sm:p-9 lg:p-10 2xl:p-10 shadow-sm border border-slate-100 hover:bg-slate-50 transition-all duration-300 flex flex-col group transform-gpu text-left"
               style={{ willChange: "transform, opacity" }}
             >
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg mb-10 2xl:mb-10 bg-indigo-600 text-white">
-                {item.icon}
+              <div className="flex items-center gap-4 sm:gap-5 mb-6">
+                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center shadow-lg bg-indigo-600 text-white transition-transform duration-300 group-hover:scale-110">
+                  {item.icon}
+                </div>
+                <h3 className="text-lg sm:text-xl lg:text-2xl 2xl:text-2xl font-bold text-slate-900 tracking-tight leading-tight">
+                  {item.title}
+                </h3>
               </div>
-              <h3 className="text-xl sm:text-2xl lg:text-2xl 2xl:text-2xl font-bold text-slate-900 mb-6 tracking-tight">{item.title}</h3>
               <p className="text-sm sm:text-base lg:text-base 2xl:text-base font-medium leading-[1.7] text-slate-600 flex-1">
                 {item.desc}
               </p>

@@ -35,7 +35,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative w-full bg-[#fdfdff] pt-20 overflow-visible">
+    <section id="home" className="relative w-full bg-[#fdfdff] pt-16 lg:pt-20 overflow-visible">
       <Helmet>
         <title>M8-BID</title>
       </Helmet>
@@ -51,9 +51,9 @@ const Hero = () => {
       />
       
       {/* FIRST FOLD: HERO CONTENT */}
-      <div className="relative w-full min-h-[calc(100dvh-80px)] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-12 py-8 sm:py-10 lg:py-14">
+      <div className="relative w-full lg:min-h-[calc(100dvh-80px)] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-12 py-6 sm:py-10 lg:py-14">
         <div className="w-full max-w-7xl 2xl:max-w-6xl mx-auto z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 xl:gap-16 2xl:gap-24 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 md:gap-12 xl:gap-16 2xl:gap-24 items-center">
             
             {/* CONTENT */}
             <motion.div 
@@ -69,14 +69,14 @@ const Hero = () => {
               </div>
 
               {/* Main Heading */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl font-black leading-[1.1] tracking-tight text-slate-900 mb-6 text-center lg:text-left">
+              <h1 className="text-[1.75rem] leading-[1.1] sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl font-black tracking-tight text-slate-900 mb-4 sm:mb-6 text-center lg:text-left">
                 Turn Your <br className="hidden sm:inline" />
                 <span className="text-indigo-600 italic font-serif">Vision</span> <br /> 
                 into a <span className="inline-block">Legacy.</span>
               </h1>
 
               {/* Description */}
-              <p className="text-sm sm:text-base md:text-lg lg:text-lg xl:text-lg 2xl:text-lg font-medium leading-relaxed text-slate-700 max-w-xl 2xl:max-w-xl mx-auto lg:mx-0 mb-7 sm:mb-8 px-2 sm:px-0">
+              <p className="text-[13px] sm:text-base md:text-lg lg:text-lg xl:text-lg 2xl:text-lg font-medium leading-relaxed text-slate-700 max-w-xl 2xl:max-w-xl mx-auto lg:mx-0 mb-6 sm:mb-8 px-2 sm:px-0">
                 The definitive arena where radical vision meets elite capital. We transform extraordinary sparks into market-defining landmarks with precision and security.
               </p>
 
@@ -109,7 +109,7 @@ const Hero = () => {
               className="flex justify-center lg:justify-end px-2 sm:px-0 transform-gpu"
               style={{ willChange: "transform, opacity" }}
             >
-              <div className="relative w-full max-w-[17rem] sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-lg 2xl:max-w-lg">
+              <div className="relative w-full max-w-[14rem] sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-lg 2xl:max-w-lg">
                 <div>
                   {/* Glow Background - Reduced blur for performance */}
                   <div className="absolute -inset-6 sm:-inset-8 md:-inset-10 lg:-inset-12 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 blur-2xl rounded-full" />
