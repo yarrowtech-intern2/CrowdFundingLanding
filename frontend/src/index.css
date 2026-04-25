@@ -28,6 +28,21 @@
     color: #0f172a;
     line-height: 1.5;
     font-family: 'Inter', sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Targeted Hardware Acceleration */
+  .motion-div, .group, .group-hover\:scale-105, .group-hover\:scale-110 {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  .transform-gpu {
+    transform: translate3d(0, 0, 0);
+    will-change: transform, opacity;
   }
 }
 

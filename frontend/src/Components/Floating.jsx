@@ -1,25 +1,137 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa";
-import { FiMail } from "react-icons/fi";
+import { FiMail, FiPlus } from "react-icons/fi";
+import { ArrowUp } from "lucide-react";
 
-const FloatingContact = () => {
+const FloatingActions = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  
   const whatsappNumber = "919830590929"; 
   const email = "hello@m8bid.com";
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hello%20I%20want%20to%20know%20more%20about%20your%20services`;
   const mailLink = `mailto:${email}`;
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setIsOpen(false);
+  };
+
+  const toggleMenu = (e) => {
+    e.stopPropagation();
+    setIsOpen(!isOpen);
+  };
+
+  const menuVariants = {
+    closed: { opacity: 0, scale: 0.5, y: 10 },
+    open: { 
+      opacity: 1, 
+      scale: 1, 
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 25,
+        staggerChildren: 0.08,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    closed: { opacity: 0, y: 10, scale: 0.8 },
+    open: { opacity: 1, y: 0, scale: 1 }
+  };
+
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 2xl:bottom-10 2xl:right-10 z-[9999] flex flex-col gap-3 sm:gap-4 pointer-events-auto">
-      {/* WhatsApp */}
-      <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 2xl:w-12 2xl:h-12 rounded-2xl bg-[#25D366] text-white shadow-xl shadow-green-500/20 hover:scale-110 active:scale-95 transition-all">
-        <FaWhatsapp className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 2xl:w-6 2xl:h-6" />
-      </a>
-      {/* Email */}
-      <a href={mailLink} className="group flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 2xl:w-12 2xl:h-12 rounded-2xl bg-indigo-600 text-white shadow-xl shadow-indigo-500/20 hover:scale-110 active:scale-95 transition-all">
-        <FiMail className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 2xl:w-6 2xl:h-6" />
-      </a>
+    <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[9999] flex flex-col items-center gap-3 pointer-events-none">
+      
+      {/* Scroll to Top "Tir" Icon (Always visible on scroll, outside menu) */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.5, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.5, y: 20 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={scrollToTop}
+            className="pointer-events-auto w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-indigo-900 text-white flex items-center justify-center shadow-lg shadow-indigo-500/30 hover:bg-indigo-700 transition-colors"
+            title="Go to Top"
+          >
+            <ArrowUp className="w-5 h-5 sm:w-5.5 sm:h-5.5" />
+          </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* Expandable Menu */}
+      <div className="relative flex flex-col items-center">
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial="closed"
+              animate="open"
+              exit="closed"
+              variants={menuVariants}
+              className="absolute bottom-full mb-3 flex flex-col gap-2.5 pointer-events-auto"
+            >
+              {/* WhatsApp Icon */}
+              <motion.a
+                variants={itemVariants}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg shadow-green-500/30 hover:shadow-green-500/40 transition-shadow"
+                title="WhatsApp"
+              >
+                <FaWhatsapp className="w-5 h-5 sm:w-5.5 sm:h-5.5" />
+              </motion.a>
+
+              {/* Email Icon */}
+              <motion.a
+                variants={itemVariants}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                href={mailLink}
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-indigo-600 text-white flex items-center justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/40 transition-shadow"
+                title="Email"
+              >
+                <FiMail className="w-5 h-5 sm:w-5.5 sm:h-5.5" />
+              </motion.a>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Main Toggle Button (New Color & No Blinking) */}
+        <motion.button
+          onClick={toggleMenu}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="pointer-events-auto relative w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-indigo-600 text-white flex items-center justify-center shadow-2xl overflow-hidden group"
+        >
+          <div className="absolute inset-0 bg-gradient-to-tr from-indigo-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          
+          <motion.div
+            animate={{ rotate: isOpen ? 135 : 0 }}
+            className="relative z-10"
+          >
+            <FiPlus className="w-6 h-6 sm:w-7 sm:h-7" />
+          </motion.div>
+        </motion.button>
+      </div>
     </div>
   );
 };
 
-export default FloatingContact;
+export default FloatingActions;

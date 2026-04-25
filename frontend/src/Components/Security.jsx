@@ -4,8 +4,15 @@ import { MdLock, MdGavel, MdVerified } from "react-icons/md";
 
 const SecurityCompliance = () => {
   const sectionVariants = {
-    hidden: (direction) => ({ opacity: 0, x: direction === "left" ? -60 : 60 }),
-    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const slideInUp = {
+    initial: { opacity: 0, y: 50 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.2 },
+    transition: { type: "spring", stiffness: 50, damping: 20 },
   };
 
   const items = [
@@ -30,47 +37,48 @@ const SecurityCompliance = () => {
   ];
 
   return (
-    <section id="security" className="w-full bg-[#fdfdff] py-14 sm:py-20 lg:py-24">
-      <div className="w-full max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 2xl:px-20">
-        {/* Header */}
-        <motion.div
-          custom="left"
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-center mb-12 sm:mb-16 lg:mb-20"
+    <section id="security" className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-10 lg:px-20 relative overflow-hidden bg-[#fdfdff]">
+      <div className="w-full max-w-7xl 2xl:max-w-6xl mx-auto text-center relative z-10">
+        <motion.div 
+          {...slideInUp} 
+          className="mb-12 sm:mb-16 md:mb-20 transform-gpu"
+          style={{ willChange: "transform, opacity" }}
         >
-          <span className="inline-block text-[10px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 px-5 py-2 rounded-full mb-8">
+          <span className="inline-block text-[10px] sm:text-xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 px-5 py-2 rounded-full mb-6">
             Trust &amp; Safety
           </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.9rem] 2xl:text-[3.2rem] font-bold leading-[1.1] tracking-tight text-slate-900 mb-6 sm:mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl 2xl:text-5xl font-black leading-[1.1] tracking-tight text-slate-900 mb-6">
             Security &amp; <span className="text-indigo-600 italic font-serif pr-2">Compliance</span>
           </h2>
-          <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg lg:text-xl 2xl:text-xl font-medium leading-relaxed text-slate-900">
+          <p className="max-w-3xl mx-auto text-base sm:text-lg md:text-lg lg:text-lg 2xl:text-lg font-medium leading-relaxed text-slate-600">
             We prioritize your protection with industry-leading security protocols and unwavering adherence to regulatory standards.
           </p>
         </motion.div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 2xl:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
           {items.map((item, index) => (
             <motion.div
               key={item.id}
-              custom={index % 2 === 0 ? "left" : "right"}
               variants={sectionVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.25 }}
-              transition={{ duration: 0.65, ease: "easeOut", delay: index * 0.08 }}
-              className="bg-white rounded-[2rem] sm:rounded-[2.5rem] p-7 sm:p-9 lg:p-10 2xl:p-12 shadow-sm border border-slate-100 hover:bg-slate-50 transition-all duration-300 flex flex-col group"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 70, 
+                damping: 18, 
+                mass: 1,
+                delay: index * 0.15 
+              }}
+              className="bg-white rounded-3xl sm:rounded-[2.5rem] p-5 xs:p-7 sm:p-9 lg:p-10 2xl:p-10 shadow-sm border border-slate-100 hover:bg-slate-50 transition-all duration-300 flex flex-col group transform-gpu"
+              style={{ willChange: "transform, opacity" }}
             >
               <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg mb-10 2xl:mb-10 bg-indigo-600 text-white">
                 {item.icon}
               </div>
-              <h3 className="text-xl sm:text-2xl 2xl:text-2xl font-bold text-slate-900 mb-6 tracking-tight">{item.title}</h3>
-              <p className="text-sm sm:text-base lg:text-base xl:text-lg 2xl:text-lg font-medium leading-[1.7] text-slate-600 flex-1">
+              <h3 className="text-xl sm:text-2xl lg:text-2xl 2xl:text-2xl font-bold text-slate-900 mb-6 tracking-tight">{item.title}</h3>
+              <p className="text-sm sm:text-base lg:text-base 2xl:text-base font-medium leading-[1.7] text-slate-600 flex-1">
                 {item.desc}
               </p>
             </motion.div>
