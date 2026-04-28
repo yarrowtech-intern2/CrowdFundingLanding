@@ -8,15 +8,15 @@ const Hero = () => {
   const slideInLeft = {
     initial: { opacity: 0, x: -50 },
     whileInView: { opacity: 1, x: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { type: "spring", stiffness: 50, damping: 20 },
+    viewport: { once: false, amount: 0.1 },
+    transition: { type: "spring", stiffness: 30, damping: 24 },
   };
 
   const slideInRight = {
     initial: { opacity: 0, x: 50 },
     whileInView: { opacity: 1, x: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { type: "spring", stiffness: 50, damping: 20 },
+    viewport: { once: false, amount: 0.1 },
+    transition: { type: "spring", stiffness: 30, damping: 24 },
   };
 
   const stepCardVariants = {
@@ -62,7 +62,7 @@ const Hero = () => {
               style={{ willChange: "transform, opacity" }}
             >
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/80 backdrop-blur-sm border border-indigo-100/50 shadow-sm mb-5 sm:mb-6 w-fit mx-auto lg:mx-0">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/80 backdrop-blur-sm shadow-sm mb-5 sm:mb-6 w-fit mx-auto lg:mx-0">
                 <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600">
                   Fundraising Platform
                 </span>
@@ -87,7 +87,7 @@ const Hero = () => {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => scrollToSection("investors")} 
-                  className="group w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-indigo-600 text-white font-bold text-base sm:text-lg lg:text-lg 2xl:text-lg rounded-2xl shadow-xl hover:bg-indigo-700 hover:shadow-2xl transition-all duration-200 flex items-center justify-center gap-2"
+                  className="group w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-indigo-600 text-white font-bold text-base sm:text-lg lg:text-lg 2xl:text-lg rounded-2xl shadow-xl hover:bg-indigo-700 hover:shadow-2xl transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   Start Fundraiser
                 </motion.button>
@@ -96,7 +96,7 @@ const Hero = () => {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => scrollToSection("contact")} 
-                  className="group w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-indigo-600 font-bold text-base sm:text-lg lg:text-lg 2xl:text-lg rounded-2xl border-2 border-indigo-100 hover:border-indigo-300 hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2"
+                  className="group w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-indigo-600 font-bold text-base sm:text-lg lg:text-lg 2xl:text-lg rounded-2xl hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   Join Network
                 </motion.button>
@@ -115,11 +115,11 @@ const Hero = () => {
                   <div className="absolute -inset-6 sm:-inset-8 md:-inset-10 lg:-inset-12 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 blur-2xl rounded-full" />
                   
                   {/* Image Card */}
-                  <div className="relative p-2 sm:p-3 md:p-4 bg-white/40 backdrop-blur-md rounded-2xl sm:rounded-3xl md:rounded-4xl border border-white/60 shadow-2xl overflow-hidden aspect-[4/3]">
+                  <div className="relative aspect-[4/3] w-full">
                     <img 
                       src={handshakeImg} 
                       alt="M8 Partnership" 
-                      className="rounded-xl sm:rounded-2xl md:rounded-3xl w-full h-full object-cover" 
+                      className="rounded-2xl sm:rounded-3xl md:rounded-4xl w-full h-full object-cover cursor-pointer shadow-2xl" 
                       loading="lazy"
                     />
                   </div>
@@ -131,7 +131,7 @@ const Hero = () => {
       </div>
 
       {/* SECOND FOLD: STEPS SECTION */}
-      <div className="relative w-full bg-white py-14 sm:py-20 lg:py-24 2xl:py-24 border-t border-indigo-100/50 overflow-visible z-10">
+      <div className="relative w-full bg-white py-14 sm:py-20 lg:py-24 2xl:py-24 overflow-visible z-10">
         <div className="w-full max-w-7xl 2xl:max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16 2xl:px-16">
           {/* Steps Heading */}
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl 2xl:text-4xl font-bold tracking-tight text-slate-900 text-center mb-8 sm:mb-10 md:mb-14 lg:mb-16">
@@ -162,10 +162,9 @@ const Hero = () => {
             ].map((step, index) => (
               <motion.div
                 key={step.id} 
-                variants={stepCardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
+                initial={{ opacity: 0, x: index === 0 ? -100 : index === 2 ? 100 : 0, y: index === 1 ? 70 : 0 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: false, amount: 0.1 }}
                 transition={{ 
                   type: "spring", 
                   stiffness: 70, 
@@ -173,7 +172,7 @@ const Hero = () => {
                   mass: 1,
                   delay: index * 0.15 
                 }}
-                className="group p-6 sm:p-8 lg:p-10 rounded-3xl bg-gradient-to-br from-indigo-50/50 to-transparent hover:bg-white hover:shadow-2xl transition-all duration-300 border border-transparent hover:border-indigo-100/50 transform-gpu w-full"
+                className="group p-6 sm:p-8 lg:p-10 rounded-3xl bg-gradient-to-br from-indigo-50/50 to-transparent hover:bg-white hover:shadow-2xl transition-all duration-300 transform-gpu w-full cursor-pointer"
                 style={{ willChange: "transform, opacity" }}
               >
                 <div className="flex items-center gap-5 mb-6">

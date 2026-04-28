@@ -7,15 +7,15 @@ const FundraiserSection = () => {
   const slideInLeft = {
     initial: { opacity: 0, x: -50 },
     whileInView: { opacity: 1, x: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { type: "spring", stiffness: 50, damping: 20 },
+    viewport: { once: false, amount: 0.1 },
+    transition: { type: "spring", stiffness: 30, damping: 24 },
   };
 
   const slideInRight = {
     initial: { opacity: 0, x: 50 },
     whileInView: { opacity: 1, x: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { type: "spring", stiffness: 50, damping: 20 },
+    viewport: { once: false, amount: 0.1 },
+    transition: { type: "spring", stiffness: 30, damping: 24 },
   };
 
   return (
@@ -30,8 +30,8 @@ const FundraiserSection = () => {
         >
           <div className="relative w-full max-w-[17rem] sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-lg 2xl:max-w-lg">
             <div className="absolute -inset-6 sm:-inset-8 md:-inset-10 lg:-inset-12 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-full blur-2xl opacity-40 shadow-2xl" />
-            <div className="relative p-2 sm:p-3 bg-white/40 backdrop-blur-md rounded-[2.8rem] sm:rounded-[3.8rem] border border-white/60 shadow-2xl overflow-hidden aspect-[4/3]">
-              <img src={fundraiserImg} alt="Fundraising Platform" className="rounded-[2.5rem] sm:rounded-[3.5rem] w-full h-full object-cover" />
+            <div className="relative aspect-[4/3] w-full">
+              <img src={fundraiserImg} alt="Fundraising Platform" className="rounded-[2.8rem] sm:rounded-[3.8rem] w-full h-full object-cover cursor-pointer shadow-2xl" />
             </div>
           </div>
         </motion.div>

@@ -3,16 +3,18 @@ import { motion } from "framer-motion";
 import { MdLock, MdGavel, MdVerified } from "react-icons/md";
 
 const SecurityCompliance = () => {
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0 },
+  const slideInLeft = {
+    initial: { opacity: 0, x: -70 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: false, amount: 0.1 },
+    transition: { type: "spring", stiffness: 30, damping: 24 },
   };
 
-  const slideInUp = {
-    initial: { opacity: 0, y: 50 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { type: "spring", stiffness: 50, damping: 20 },
+  const slideInRight = {
+    initial: { opacity: 0, x: 70 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: false, amount: 0.1 },
+    transition: { type: "spring", stiffness: 30, damping: 24 },
   };
 
   const items = [
@@ -21,18 +23,21 @@ const SecurityCompliance = () => {
       title: "Data Encryption",
       desc: "All transactions and personal data are encrypted with 256-bit SSL, ensuring your financial information remains private.",
       icon: <MdLock className="w-6 h-6" />,
+      side: "left"
     },
     {
       id: 2,
       title: "Regulatory Compliance",
       desc: "Fully compliant with SEBI and government regulations. Our platform undergoes regular audits to ensure total compliance.",
       icon: <MdGavel className="w-6 h-6" />,
+      side: "up"
     },
     {
       id: 3,
       title: "Verified Properties",
       desc: "All listed investments are thoroughly vetted by our expert team. Every property undergoes a rigorous due diligence process.",
       icon: <MdVerified className="w-6 h-6" />,
+      side: "right"
     },
   ];
 
@@ -40,7 +45,7 @@ const SecurityCompliance = () => {
     <section id="security" className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-10 lg:px-20 relative overflow-hidden bg-[#fdfdff]">
       <div className="w-full max-w-7xl 2xl:max-w-6xl mx-auto text-center relative z-10">
         <motion.div 
-          {...slideInUp} 
+          {...slideInLeft} 
           className="mb-12 sm:mb-16 md:mb-20 transform-gpu"
           style={{ willChange: "transform, opacity" }}
         >
@@ -60,10 +65,9 @@ const SecurityCompliance = () => {
           {items.map((item, index) => (
             <motion.div
               key={item.id}
-              variants={sectionVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+              initial={{ opacity: 0, x: item.side === "left" ? -100 : item.side === "right" ? 100 : 0, y: item.side === "up" ? 100 : 0 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: false, amount: 0.1 }}
               transition={{ 
                 type: "spring", 
                 stiffness: 70, 
@@ -71,7 +75,7 @@ const SecurityCompliance = () => {
                 mass: 1,
                 delay: index * 0.15 
               }}
-              className="bg-white rounded-3xl sm:rounded-[2.5rem] p-6 xs:p-7 sm:p-9 lg:p-10 2xl:p-10 shadow-sm border border-slate-100 hover:bg-slate-50 transition-all duration-300 flex flex-col group transform-gpu text-left"
+              className="bg-white rounded-3xl sm:rounded-[2.5rem] p-6 xs:p-7 sm:p-9 lg:p-10 2xl:p-10 shadow-sm hover:bg-slate-50 transition-all duration-300 flex flex-col group transform-gpu text-left cursor-pointer"
               style={{ willChange: "transform, opacity" }}
             >
               <div className="flex items-center gap-4 sm:gap-5 mb-6">

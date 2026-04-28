@@ -196,13 +196,11 @@ const ContactUs = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start w-full">
           {/* Left Side: Contact Information (Card) */}
           <motion.div
-            custom="left"
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="bg-white rounded-[2.5rem] shadow-2xl shadow-indigo-500/5 p-8 sm:p-10 md:p-12 border border-slate-100 transform-gpu relative overflow-hidden h-full"
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
+            transition={{ type: "spring", stiffness: 30, damping: 24 }}
+            className="bg-white rounded-[2.5rem] shadow-2xl shadow-indigo-500/5 p-8 sm:p-10 md:p-12 transform-gpu relative overflow-hidden h-full"
             style={{ willChange: "transform, opacity" }}
           >
             {/* Decorative background element */}
@@ -237,11 +235,11 @@ const ContactUs = () => {
                   href={item.link}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ delay: index * 0.1 }}
                   className="flex items-start gap-5 group"
                 >
-                  <div className="flex-shrink-0 h-14 w-14 flex items-center justify-center rounded-2xl bg-white shadow-lg border border-slate-100 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                  <div className="flex-shrink-0 h-14 w-14 flex items-center justify-center rounded-2xl bg-white shadow-lg text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
                     {item.icon}
                   </div>
                   <div>
@@ -256,18 +254,16 @@ const ContactUs = () => {
 
           {/* Right Side: Contact Form */}
           <motion.div
-            custom="right"
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ 
               type: "spring", 
-              stiffness: 60, 
-              damping: 18, 
+              stiffness: 30, 
+              damping: 24, 
               delay: 0.1 
             }}
-            className="bg-white rounded-[2.5rem] shadow-2xl shadow-indigo-500/10 p-8 sm:p-10 border border-slate-100 transform-gpu w-full relative"
+            className="bg-white rounded-[2.5rem] shadow-2xl shadow-indigo-500/10 p-8 sm:p-10 transform-gpu w-full relative"
             style={{ willChange: "transform, opacity" }}
           >
             {/* Decorative background element */}
@@ -277,27 +273,27 @@ const ContactUs = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="block text-[10px] font-black text-slate-900 uppercase tracking-widest text-left ml-1 flex items-center">Full Name <span className="text-red-500 ml-1">*</span></label>
-                  <input type="text" name="name" value={form.name} onChange={handleChange} onBlur={handleBlur} placeholder="Enter your name" className={`w-full px-5 py-4 rounded-2xl border-2 bg-slate-50/50 focus:border-indigo-600 focus:bg-white focus:outline-none transition-all text-sm font-bold text-black ${errors.name ? "border-red-500" : "border-slate-100"}`} />
+                  <input type="text" name="name" value={form.name} onChange={handleChange} onBlur={handleBlur} placeholder="Enter your name" className={`w-full px-5 py-4 rounded-2xl bg-slate-50/50 focus:border-indigo-600 focus:bg-white focus:outline-none transition-all text-sm font-bold text-black border-2 ${errors.name ? "border-red-500" : "border-transparent"}`} />
                   {errors.name && <p className="mt-1 text-left text-[10px] font-bold text-red-500 ml-1">{errors.name}</p>}
                 </div>
                 <div className="space-y-2">
                   <label className="block text-[10px] font-black text-slate-900 uppercase tracking-widest text-left ml-1 flex items-center">Email Address <span className="text-red-500 ml-1">*</span></label>
-                  <input type="email" name="email" value={form.email} onChange={handleChange} onBlur={handleBlur} placeholder="Enter your mail" className={`w-full px-5 py-4 rounded-2xl border-2 bg-slate-50/50 focus:border-indigo-600 focus:bg-white focus:outline-none transition-all text-sm font-bold text-black ${errors.email ? "border-red-500" : "border-slate-100"}`} />
+                  <input type="email" name="email" value={form.email} onChange={handleChange} onBlur={handleBlur} placeholder="Enter your mail" className={`w-full px-5 py-4 rounded-2xl bg-slate-50/50 focus:border-indigo-600 focus:bg-white focus:outline-none transition-all text-sm font-bold text-black border-2 ${errors.email ? "border-red-500" : "border-transparent"}`} />
                   {errors.email && <p className="mt-1 text-left text-[10px] font-bold text-red-500 ml-1">{errors.email}</p>}
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="block text-[10px] font-black text-slate-900 uppercase tracking-widest text-left ml-1 flex items-center">Phone Number <span className="text-red-500 ml-1">*</span></label>
-                  <input type="tel" name="mobile" value={form.mobile} onChange={handleChange} onBlur={handleBlur} placeholder="+91 00000 00000" className={`w-full px-5 py-4 rounded-2xl border-2 bg-slate-50/50 focus:border-indigo-600 focus:bg-white focus:outline-none transition-all text-sm font-bold text-black ${errors.mobile ? "border-red-500" : "border-slate-100"}`} />
+                  <input type="tel" name="mobile" value={form.mobile} onChange={handleChange} onBlur={handleBlur} placeholder="+91 00000 00000" className={`w-full px-5 py-4 rounded-2xl bg-slate-50/50 focus:border-indigo-600 focus:bg-white focus:outline-none transition-all text-sm font-bold text-black border-2 ${errors.mobile ? "border-red-500" : "border-transparent"}`} />
                   {errors.mobile && <p className="mt-1 text-left text-[10px] font-bold text-red-500 ml-1">{errors.mobile}</p>}
                 </div>
                 <div className="relative space-y-2" ref={dropdownRef}>
                   <label className="block text-[10px] font-black text-slate-900 uppercase tracking-widest text-left ml-1 flex items-center">Location <span className="text-red-500 ml-1">*</span></label>
-                  <input type="text" name="address" value={addrQuery} onChange={handleChange} onBlur={handleBlur} placeholder="Search address..." className={`w-full px-5 py-4 rounded-2xl border-2 bg-slate-50/50 focus:border-indigo-600 focus:bg-white focus:outline-none transition-all text-sm font-bold text-black ${errors.address ? "border-red-500" : "border-slate-100"}`} />
+                  <input type="text" name="address" value={addrQuery} onChange={handleChange} onBlur={handleBlur} placeholder="Search address..." className={`w-full px-5 py-4 rounded-2xl bg-slate-50/50 focus:border-indigo-600 focus:bg-white focus:outline-none transition-all text-sm font-bold text-black border-2 ${errors.address ? "border-red-500" : "border-transparent"}`} />
                   {errors.address && <p className="mt-1 text-left text-[10px] font-bold text-red-500 ml-1">{errors.address}</p>}
                   {addrOpen && (addrLoading || addrSuggestions.length > 0) && (
-                    <div className="absolute z-50 mt-2 w-full rounded-2xl border border-slate-100 bg-white shadow-2xl overflow-hidden text-sm">
+                    <div className="absolute z-50 mt-2 w-full rounded-2xl bg-white shadow-2xl overflow-hidden text-sm">
                       {addrLoading ? <div className="p-4 text-slate-500">Searching...</div> : 
                         addrSuggestions.map(item => (
                           <button key={item.place_id} type="button" onClick={() => selectSuggestion(item)} className="w-full text-left px-5 py-4 hover:bg-slate-50 transition truncate border-b border-slate-50 last:border-0 font-medium">{item.display_name}</button>
@@ -309,14 +305,14 @@ const ContactUs = () => {
               </div>
               <div className="space-y-2">
                 <label className="block text-[10px] font-black text-slate-900 uppercase tracking-widest text-left ml-1">Message</label>
-                <textarea name="message" rows="4" value={form.message} onChange={handleChange} onBlur={handleBlur} placeholder="How can we help you?" className={`w-full px-5 py-4 rounded-2xl border-2 bg-slate-50/50 focus:border-indigo-600 focus:bg-white focus:outline-none transition-all resize-none text-sm font-bold text-black min-h-[120px] ${errors.message ? "border-red-500" : "border-slate-100"}`} />
+                <textarea name="message" rows="4" value={form.message} onChange={handleChange} onBlur={handleBlur} placeholder="How can we help you?" className={`w-full px-5 py-4 rounded-2xl bg-slate-50/50 focus:border-indigo-600 focus:bg-white focus:outline-none transition-all resize-none text-sm font-bold text-black min-h-[120px] border-2 ${errors.message ? "border-red-500" : "border-transparent"}`} />
               </div>
               <motion.button
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
                 type="submit"
                 disabled={isLoading}
-                className="group w-full py-5 bg-indigo-600 text-white font-black rounded-2xl shadow-xl shadow-indigo-600/20 hover:bg-indigo-700 transition-all flex items-center justify-center gap-3 text-base uppercase tracking-widest mt-6"
+                className="group w-full py-5 bg-indigo-600 text-white font-black rounded-2xl shadow-xl shadow-indigo-600/20 hover:bg-indigo-700 transition-all flex items-center justify-center gap-3 text-base uppercase tracking-widest mt-6 cursor-pointer"
               >
                 {isLoading ? "Sending..." : <>Send Message <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>}
               </motion.button>

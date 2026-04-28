@@ -70,10 +70,10 @@ const Header = () => {
 
         <div className="hidden lg:block absolute left-1/2 -translate-x-1/2">
           <nav
-            className={`flex items-center gap-4 xl:gap-8 px-6 py-3 rounded-full border border-white/40 transition-all duration-500 ${
+            className={`flex items-center gap-4 xl:gap-8 px-6 py-3 rounded-full transition-all duration-500 ${
               scrolled
-                ? "bg-white/95 backdrop-blur-xl shadow-2xl shadow-indigo-100/40 border-indigo-100/60"
-                : "bg-white/50 backdrop-blur-sm border-white/30"
+                ? "bg-white/95 backdrop-blur-xl shadow-2xl shadow-indigo-100/40"
+                : "bg-white/50 backdrop-blur-sm"
             }`}
           >
             {navItems.map((item) => (
@@ -81,7 +81,7 @@ const Header = () => {
                 key={item.id}
                 type="button"
                 onClick={() => scrollToSection(item.id)}
-                className={`text-xs md:text-sm xl:text-base font-bold transition-all relative group/item whitespace-nowrap px-1 py-1 ${
+                className={`text-xs md:text-sm xl:text-base font-bold transition-all relative group/item whitespace-nowrap px-1 py-1 cursor-pointer ${
                   activeSection === item.id ? "text-indigo-600" : "text-slate-700 hover:text-indigo-600"
                 }`}
               >
@@ -100,7 +100,7 @@ const Header = () => {
           <button
             type="button"
             onClick={() => scrollToSection("contact")}
-            className="hidden md:flex px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-indigo-600 text-white font-bold text-xs md:text-sm rounded-full hover:bg-indigo-700 transition-all active:scale-95 shadow-lg shadow-indigo-200 hover:shadow-xl hover:shadow-indigo-300"
+            className="hidden md:flex px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 bg-indigo-600 text-white font-bold text-xs md:text-sm rounded-full hover:bg-indigo-700 transition-all active:scale-95 shadow-lg shadow-indigo-200 hover:shadow-xl hover:shadow-indigo-300 cursor-pointer"
           >
             Get Started
           </button>
@@ -108,7 +108,7 @@ const Header = () => {
           <button
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-lg border border-slate-200 text-slate-900 hover:bg-slate-50 transition-all ml-auto"
+            className="lg:hidden w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-lg text-slate-900 hover:bg-slate-50 transition-all ml-auto cursor-pointer"
             aria-label="Toggle Menu"
             aria-expanded={menuOpen}
           >
@@ -119,14 +119,14 @@ const Header = () => {
 
       {menuOpen && (
         <div className="mt-3 sm:mt-4 w-[calc(100%-24px)] sm:w-[calc(100%-48px)] mx-auto lg:hidden pointer-events-auto">
-          <div className="bg-white/98 backdrop-blur-2xl rounded-xl sm:rounded-2xl shadow-2xl border border-slate-200 p-3 sm:p-4 md:p-5">
+          <div className="bg-white/98 backdrop-blur-2xl rounded-xl sm:rounded-2xl shadow-2xl p-3 sm:p-4 md:p-5">
             <div className="flex flex-col gap-0.5 sm:gap-1">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   type="button"
                   onClick={() => scrollToSection(item.id)}
-                  className={`text-left py-2.5 sm:py-3 md:py-3.5 px-3 sm:px-4 text-xs sm:text-sm md:text-base font-bold rounded-lg transition-all ${
+                  className={`text-left py-2.5 sm:py-3 md:py-3.5 px-3 sm:px-4 text-xs sm:text-sm md:text-base font-bold rounded-lg transition-all cursor-pointer ${
                     activeSection === item.id
                       ? "text-indigo-600 bg-indigo-100/60"
                       : "text-slate-800 hover:bg-slate-100/50 active:bg-slate-200/50"
@@ -140,7 +140,7 @@ const Header = () => {
             <button
               type="button"
               onClick={() => scrollToSection("contact")}
-              className="mt-3 sm:mt-4 w-full py-3 sm:py-3.5 md:py-4 bg-indigo-600 text-white font-black text-xs sm:text-sm md:text-base rounded-lg shadow-lg hover:bg-indigo-700 transition-all active:scale-95"
+               className="mt-3 sm:mt-4 w-full py-3 sm:py-3.5 md:py-4 bg-indigo-600 text-white font-black text-xs sm:text-sm md:text-base rounded-lg shadow-lg hover:bg-indigo-700 transition-all active:scale-95 cursor-pointer"
             >
               Get Started
             </button>

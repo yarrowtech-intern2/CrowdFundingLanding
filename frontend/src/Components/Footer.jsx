@@ -60,7 +60,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.id}>
-                  <button type="button" onClick={() => scrollToSection(link.id)} className="text-slate-400 hover:text-indigo-400 text-xs transition-colors font-bold uppercase tracking-wider flex items-center group">
+                  <button type="button" onClick={() => scrollToSection(link.id)} className="text-slate-400 hover:text-indigo-400 text-xs transition-colors font-bold uppercase tracking-wider flex items-center group cursor-pointer">
                     <span className="w-0 group-hover:w-4 h-[1px] bg-indigo-500 mr-0 group-hover:mr-2 transition-all"></span>
                     {link.name}
                   </button>
@@ -80,7 +80,7 @@ const Footer = () => {
           >
             <h4 className="text-white font-bold text-[10px] uppercase tracking-[0.2em]">Contact</h4>
             <div className="flex flex-col gap-5">
-              <a href="mailto:hello@m8bid.com" className="flex items-center gap-4 text-slate-400 hover:text-indigo-100 transition-colors group">
+              <a href="mailto:hello@m8bid.com" className="flex items-center gap-4 text-slate-400 hover:text-indigo-100 transition-colors group cursor-pointer">
                 <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-slate-800/50 flex items-center justify-center text-indigo-500 transition-all shadow-sm">
                   <MdEmail className="w-5 h-5" />
                 </div>
@@ -89,7 +89,7 @@ const Footer = () => {
                   <span className="text-xs font-semibold">hello@m8bid.com</span>
                 </div>
               </a>
-              <a href="tel:+919830590929" className="flex items-center gap-4 text-slate-400 hover:text-indigo-100 transition-colors group">
+              <a href="tel:+919830590929" className="flex items-center gap-4 text-slate-400 hover:text-indigo-100 transition-colors group cursor-pointer">
                 <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-slate-800/50 flex items-center justify-center text-indigo-500 transition-all shadow-sm">
                   <MdPhone className="w-5 h-5" />
                 </div>
@@ -98,15 +98,20 @@ const Footer = () => {
                   <span className="text-xs font-semibold">+91 98305 90929</span>
                 </div>
               </a>
-              <div className="flex items-start gap-4 text-slate-400 border-t border-slate-800/50 pt-4 mt-1">
-                <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-slate-800/50 flex items-center justify-center text-indigo-500 transition-all shadow-sm">
+              <a 
+                href="https://www.google.com/maps/search/?api=1&query=3A,+Bertram+St,+Esplanade,+Kolkata,+West+Bengal+700087" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-start gap-4 text-slate-400 hover:text-indigo-100 transition-colors group cursor-pointer pt-4 mt-1 border-t border-slate-800/50"
+              >
+                <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-slate-800/50 flex items-center justify-center text-indigo-500 transition-all shadow-sm group-hover:bg-indigo-600 group-hover:text-white">
                   <MdLocationOn className="w-5 h-5" />
                 </div>
                 <div>
                   <p className="text-[10px] uppercase font-bold text-slate-500 mb-0.5">Office</p>
                   <span className="text-xs font-semibold leading-tight block max-w-[180px]">3A, Bertram St, Esplanade, Kolkata 700087</span>
                 </div>
-              </div>
+              </a>
             </div>
           </motion.div>
 
@@ -122,7 +127,7 @@ const Footer = () => {
             <h4 className="text-white font-bold text-[10px] uppercase tracking-[0.2em] lg:text-right">Map View</h4>
 
             <div className="space-y-4">
-              <div className="relative w-full h-64 rounded-xl overflow-hidden border border-white/10 shadow-2xl group ml-auto">
+              <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-2xl group ml-auto">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.2755315510!2d88.351239!3d22.5606456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0277063cc9b257%3A0xe54970477e68e4c7!2s3A%2C%20Bertram%20St%2C%20Esplanade%2C%20Kolkata%2C%20West%20Bengal%20700087!5e0!3m2!1sen!2sin!4v1712495000000!5m2!1sen!2sin"
                   width="100%"
@@ -150,8 +155,8 @@ const Footer = () => {
         >
           <p>&copy; {new Date().getFullYear()} M8-BID. All rights reserved.</p>
           <div className="flex gap-8">
-            <a href="#" className="hover:text-indigo-400 transition-all">Privacy Policy</a>
-            <a href="#" className="hover:text-indigo-400 transition-all">Terms of Service</a>
+            <a href="#" className="hover:text-indigo-400 transition-all cursor-pointer">Privacy Policy</a>
+            <a href="#" className="hover:text-indigo-400 transition-all cursor-pointer">Terms of Service</a>
           </div>
         </motion.div>
       </div>
