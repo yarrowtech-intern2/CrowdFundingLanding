@@ -4,17 +4,17 @@ import aboutImg from "../assets/about.webp";
 
 const AboutUs = () => {
   const slideInLeft = {
-    initial: { opacity: 0, x: -50 },
+    initial: { opacity: 0, x: -30 },
     whileInView: { opacity: 1, x: 0 },
-    viewport: { once: false, amount: 0.1 },
-    transition: { type: "spring", stiffness: 30, damping: 24 },
+    viewport: { once: true, amount: 0.2 },
+    transition: { type: "spring", stiffness: 100, damping: 20 },
   };
 
   const slideInRight = {
-    initial: { opacity: 0, x: 50 },
+    initial: { opacity: 0, x: 30 },
     whileInView: { opacity: 1, x: 0 },
-    viewport: { once: false, amount: 0.1 },
-    transition: { type: "spring", stiffness: 30, damping: 24 },
+    viewport: { once: true, amount: 0.2 },
+    transition: { type: "spring", stiffness: 100, damping: 20 },
   };
 
   return (

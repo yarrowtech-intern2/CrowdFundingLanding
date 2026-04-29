@@ -6,17 +6,17 @@ import { UserPlus, Wallet, ArrowRightLeft } from "lucide-react";
 
 const Hero = () => {
   const slideInLeft = {
-    initial: { opacity: 0, x: -50 },
+    initial: { opacity: 0, x: -30 },
     whileInView: { opacity: 1, x: 0 },
-    viewport: { once: false, amount: 0.1 },
-    transition: { type: "spring", stiffness: 30, damping: 24 },
+    viewport: { once: true, amount: 0.2 },
+    transition: { type: "spring", stiffness: 100, damping: 20 },
   };
 
   const slideInRight = {
-    initial: { opacity: 0, x: 50 },
+    initial: { opacity: 0, x: 30 },
     whileInView: { opacity: 1, x: 0 },
-    viewport: { once: false, amount: 0.1 },
-    transition: { type: "spring", stiffness: 30, damping: 24 },
+    viewport: { once: true, amount: 0.2 },
+    transition: { type: "spring", stiffness: 100, damping: 20 },
   };
 
   const stepCardVariants = {
@@ -51,9 +51,12 @@ const Hero = () => {
       />
       
       {/* FIRST FOLD: HERO CONTENT */}
-      <div className="relative w-full lg:min-h-[calc(100dvh-80px)] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-12 py-6 sm:py-10 lg:py-14">
+      <div className="relative w-full min-h-[85vh] lg:min-h-[calc(100dvh-80px)] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-12 py-12 sm:py-16 lg:py-14">
+        {/* Background Glow behind text */}
+        <div className="absolute top-1/4 left-0 w-64 h-64 bg-indigo-200/20 blur-[100px] rounded-full pointer-events-none -translate-x-1/2" />
+        
         <div className="w-full max-w-7xl 2xl:max-w-6xl mx-auto z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 md:gap-12 xl:gap-16 2xl:gap-24 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-24 items-center">
             
             {/* CONTENT */}
             <motion.div 
@@ -62,14 +65,14 @@ const Hero = () => {
               style={{ willChange: "transform, opacity" }}
             >
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white/80 backdrop-blur-sm shadow-sm mb-5 sm:mb-6 w-fit mx-auto lg:mx-0">
-                <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-indigo-50 shadow-sm mb-4 sm:mb-6 w-fit mx-auto lg:mx-0">
+                <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-indigo-600">
                   Fundraising Platform
                 </span>
               </div>
 
               {/* Main Heading */}
-              <h1 className="text-[1.75rem] leading-[1.1] sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl font-black tracking-tight text-slate-900 mb-4 sm:mb-6 text-center lg:text-left">
+              <h1 className="text-3xl leading-[1.1] sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl font-black tracking-tight text-slate-900 mb-5 sm:mb-6 text-center lg:text-left">
                 Turn Your <br className="hidden sm:inline" />
                 <span className="text-indigo-600 italic font-serif">Vision</span> <br /> 
                 into a <span className="inline-block">Legacy.</span>
@@ -131,7 +134,7 @@ const Hero = () => {
       </div>
 
       {/* SECOND FOLD: STEPS SECTION */}
-      <div className="relative w-full bg-white py-14 sm:py-20 lg:py-24 2xl:py-24 overflow-visible z-10">
+      <div className="relative w-full bg-white py-20 sm:py-24 lg:py-32 2xl:py-32 overflow-visible z-10">
         <div className="w-full max-w-7xl 2xl:max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16 2xl:px-16">
           {/* Steps Heading */}
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl 2xl:text-4xl font-bold tracking-tight text-slate-900 text-center mb-8 sm:mb-10 md:mb-14 lg:mb-16">
@@ -162,15 +165,14 @@ const Hero = () => {
             ].map((step, index) => (
               <motion.div
                 key={step.id} 
-                initial={{ opacity: 0, x: index === 0 ? -100 : index === 2 ? 100 : 0, y: index === 1 ? 70 : 0 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: false, amount: 0.1 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ 
                   type: "spring", 
-                  stiffness: 70, 
-                  damping: 18, 
-                  mass: 1,
-                  delay: index * 0.15 
+                  stiffness: 100, 
+                  damping: 20, 
+                  delay: index * 0.1 
                 }}
                 className="group p-6 sm:p-8 lg:p-10 rounded-3xl bg-gradient-to-br from-indigo-50/50 to-transparent hover:bg-white hover:shadow-2xl transition-all duration-300 transform-gpu w-full cursor-pointer"
                 style={{ willChange: "transform, opacity" }}
@@ -201,6 +203,9 @@ const Hero = () => {
               </motion.div>
             ))}
           </div>
+          
+          {/* Bottom spacer for floating buttons on mobile */}
+          <div className="h-20 lg:hidden" />
         </div>
       </div>
     </section>

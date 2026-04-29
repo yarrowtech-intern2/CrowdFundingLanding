@@ -196,10 +196,10 @@ const ContactUs = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start w-full">
           {/* Left Side: Contact Information (Card) */}
           <motion.div
-            initial={{ opacity: 0, x: -100 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
-            transition={{ type: "spring", stiffness: 30, damping: 24 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
             className="bg-white rounded-[2.5rem] shadow-2xl shadow-indigo-500/5 p-8 sm:p-10 md:p-12 transform-gpu relative overflow-hidden h-full"
             style={{ willChange: "transform, opacity" }}
           >
@@ -254,13 +254,13 @@ const ContactUs = () => {
 
           {/* Right Side: Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 100 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ 
               type: "spring", 
-              stiffness: 30, 
-              damping: 24, 
+              stiffness: 100, 
+              damping: 20, 
               delay: 0.1 
             }}
             className="bg-white rounded-[2.5rem] shadow-2xl shadow-indigo-500/10 p-8 sm:p-10 transform-gpu w-full relative"

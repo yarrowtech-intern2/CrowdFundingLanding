@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa";
-import { FiMail, FiMessageCircle } from "react-icons/fi";
+import { FiMail, FiMessageCircle, FiPhoneCall } from "react-icons/fi";
 import { ArrowUp } from "lucide-react";
 
 const FloatingActions = () => {
@@ -59,16 +59,26 @@ const FloatingActions = () => {
       <AnimatePresence>
         {showScrollTop && (
           <motion.button
-            initial={{ opacity: 0, scale: 0.5, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.5, y: 20 }}
-            whileHover={{ scale: 1.1 }}
+            initial={{ opacity: 0, scale: 0, y: 20 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1, 
+              y: 0,
+              transition: {
+                type: "spring",
+                stiffness: 260,
+                damping: 20
+              }
+            }}
+            exit={{ opacity: 0, scale: 0, y: 20 }}
+            whileHover={{ scale: 1.1, y: -5 }}
             whileTap={{ scale: 0.9 }}
             onClick={scrollToTop}
-            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-indigo-900 text-white flex items-center justify-center shadow-lg shadow-indigo-500/30 hover:bg-indigo-700 transition-colors cursor-pointer"
-            title="Go to Top"
+            className="w-12 h-12 rounded-full bg-white text-indigo-600 flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.15)] border border-indigo-50 hover:bg-indigo-600 hover:text-white transition-all duration-300 cursor-pointer group"
+            aria-label="Scroll to top"
+            title="Go to Home"
           >
-            <ArrowUp className="w-5 h-5 sm:w-5.5 sm:h-5.5" />
+            <ArrowUp className="w-6 h-6 group-hover:-translate-y-1 transition-transform duration-300" />
           </motion.button>
         )}
       </AnimatePresence>
@@ -126,7 +136,7 @@ const FloatingActions = () => {
             animate={{ rotate: isOpen ? 135 : 0 }}
             className="relative z-10"
           >
-            <FiMessageCircle className="w-6 h-6 sm:w-7 sm:h-7" />
+            <FiPhoneCall className="w-6 h-6 sm:w-7 sm:h-7" />
           </motion.div>
         </motion.button>
       </div>

@@ -4,17 +4,17 @@ import { MdLock, MdGavel, MdVerified } from "react-icons/md";
 
 const SecurityCompliance = () => {
   const slideInLeft = {
-    initial: { opacity: 0, x: -70 },
+    initial: { opacity: 0, x: -30 },
     whileInView: { opacity: 1, x: 0 },
-    viewport: { once: false, amount: 0.1 },
-    transition: { type: "spring", stiffness: 30, damping: 24 },
+    viewport: { once: true, amount: 0.2 },
+    transition: { type: "spring", stiffness: 100, damping: 20 },
   };
 
   const slideInRight = {
-    initial: { opacity: 0, x: 70 },
+    initial: { opacity: 0, x: 30 },
     whileInView: { opacity: 1, x: 0 },
-    viewport: { once: false, amount: 0.1 },
-    transition: { type: "spring", stiffness: 30, damping: 24 },
+    viewport: { once: true, amount: 0.2 },
+    transition: { type: "spring", stiffness: 100, damping: 20 },
   };
 
   const items = [
@@ -65,15 +65,14 @@ const SecurityCompliance = () => {
           {items.map((item, index) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, x: item.side === "left" ? -100 : item.side === "right" ? 100 : 0, y: item.side === "up" ? 100 : 0 }}
-              whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ once: false, amount: 0.1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ 
                 type: "spring", 
-                stiffness: 70, 
-                damping: 18, 
-                mass: 1,
-                delay: index * 0.15 
+                stiffness: 100, 
+                damping: 20, 
+                delay: index * 0.1 
               }}
               className="bg-white rounded-3xl sm:rounded-[2.5rem] p-6 xs:p-7 sm:p-9 lg:p-10 2xl:p-10 shadow-sm hover:bg-slate-50 transition-all duration-300 flex flex-col group transform-gpu text-left cursor-pointer"
               style={{ willChange: "transform, opacity" }}

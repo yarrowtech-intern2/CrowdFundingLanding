@@ -47,6 +47,15 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navItems]);
 
+  // Close mobile menu on scroll
+  useEffect(() => {
+    const handleScrollClose = () => {
+      if (menuOpen) setMenuOpen(false);
+    };
+    window.addEventListener("scroll", handleScrollClose, { passive: true });
+    return () => window.removeEventListener("scroll", handleScrollClose);
+  }, [menuOpen]);
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (!element) return;
