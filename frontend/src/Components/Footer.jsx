@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
+import logoImg from "../assets/Logo.jpeg";
 
 const Footer = () => {
   const sectionVariants = {
@@ -41,7 +42,16 @@ const Footer = () => {
             transition={{ duration: 0.65, ease: "easeOut" }}
             className="space-y-4 lg:col-span-3"
           >
-            <h3 className="text-xl font-black text-white tracking-tighter">M8-BID</h3>
+            <div 
+              onClick={() => scrollToSection("home")} 
+              className="cursor-pointer inline-flex items-center bg-white px-5 py-2.5 sm:px-6 sm:py-3 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 w-fit overflow-hidden"
+            >
+              <img 
+                src={logoImg} 
+                alt="Matebid Logo" 
+                className="h-14 sm:h-18 md:h-20 -my-3 sm:-my-4 md:-my-5 w-auto object-contain" 
+              />
+            </div>
             <p className="text-sm font-medium leading-relaxed max-w-sm text-slate-400">
               Empowering global visionaries through elite capital connection and secure, transparent crowdfunding solutions.
             </p>

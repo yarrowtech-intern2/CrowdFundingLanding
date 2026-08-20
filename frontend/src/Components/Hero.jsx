@@ -37,7 +37,7 @@ const Hero = () => {
   return (
     <section id="home" className="relative w-full bg-[#fdfdff] pt-16 lg:pt-20 overflow-visible">
       <Helmet>
-        <title>M8-BID</title>
+        <title>Matebid | Crowdfunding & Investment Platform</title>
       </Helmet>
 
       {/* Grid Overlay */}

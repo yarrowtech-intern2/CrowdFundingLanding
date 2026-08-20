@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import logoImg from "../assets/Logo.jpeg";
 
 const HEADER_HEIGHT = 80;
 
@@ -67,14 +68,15 @@ const Header = () => {
   return (
     <header className="fixed top-2 sm:top-3 md:top-4 left-0 w-full z-50 pointer-events-none transition-all duration-300">
       <div className="w-full max-w-7xl 2xl:max-w-[90rem] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 flex items-center justify-between pointer-events-auto relative">
-        <div onClick={() => scrollToSection("home")} className="cursor-pointer flex items-center gap-2 sm:gap-2.5 justify-start group flex-shrink-0">
-          <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-indigo-600 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300">
-            <span className="text-white font-black text-[9px] sm:text-xs md:text-sm">M8</span>
-          </div>
-
-          <span className="text-sm sm:text-base md:text-lg font-black text-slate-900 tracking-tighter group-hover:text-indigo-600 transition-colors duration-300 whitespace-nowrap">
-            M8-BID
-          </span>
+        <div 
+          onClick={() => scrollToSection("home")} 
+          className="cursor-pointer flex items-center justify-start group flex-shrink-0"
+        >
+          <img
+            src={logoImg}
+            alt="Matebid Logo"
+            className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 -my-3 sm:-my-5 md:-my-7 lg:-my-9 w-auto object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300"
+          />
         </div>
 
         <div className="hidden lg:block absolute left-1/2 -translate-x-1/2">
